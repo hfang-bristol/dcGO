@@ -1,0 +1,1014 @@
+% layout 'default', tab => '/dcGO/help';
+% title 'dcGO - Providing the help';
+
+% content_for css => begin
+	
+% end
+
+
+% content_for scripts => begin
+
+% end
+
+<div class="jumbotron">
+
+	<div class="text-center">
+		<h3><i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>&nbsp;&nbsp;ABOUT&nbsp;|&nbsp;MYSQL&nbsp;|&nbsp;MORE&nbsp;&nbsp;</h3>
+	</div>
+    
+</div>
+
+<!-- results -->
+<div id="results-container" class="container collapse in">
+	
+	<div class="panel-group" id="accordion">
+		
+	   <!-- panel 1 -->
+	   <div class="panel panel-warning" id="panel1">
+		  <div class="panel-heading">
+			 <h4 class="panel-title" id="bookmark1">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+				   <i class="fa fa-minus-circle"></i><strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Overview of the dcGO database development and deployment">&nbsp;&nbsp;ABOUT</strong></a>
+				</a>
+			 </h4>
+		  </div>
+		  <div id="collapse1" class="panel-collapse collapse in">
+			 <div class = "panel-body">
+				
+				<fieldset>
+				<h5 class="about_title"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;The idea/method of mapping Gene Ontology (GO) terms onto SCOP domains was first described in the SUPERFAMILY 2011 NAR database issue paper. As a result of this generalised  method applied to Open Biomedical Ontologies (OBO) of diverse contexts and protein domains of different levels, we generated a resource `dcGO` officially released in the dcGO 2013 NAR database issue paper.</h5>
+				</fieldset>
+				
+				<br>
+				
+				<fieldset>
+				<h5 class="about_title"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Over time (10 years on), this resource has evolved to support domain-centric annotations not only for SCOP superfamilies/families and also for Pfam and InterPro families. Such annotations are made available in terms of a variety of knowledge contexts, ranging from functions, pathways, regulators and hallmarks, to phenotypes and diseases, further down to the information about drugs.</h5>
+				</fieldset>
+				
+				<br>
+				
+				<fieldset>
+				<h5 class="about_title"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;In parallel with the growth in knowledgebase (both protein domains and ontologies), the dcGO now provides users the opportunities, including: 
+				<ul>
+				<li><a href="/dcGO" target="faceted search"><i class="fa fa-search-plus fa-1x"></i>&nbsp;FACETED SEARCH</a>, an entry point to mine the dcGO resource with the keyword in query returning term-specific pages and domain-specific pages; 
+				<li><a href="/dcGO/hie" target="ontology hierarchy"><i class="fa fa-sitemap fa-1x"></i>&nbsp;ONTOLOGY HIERARCHY</a>, enabling the browsing along with annotated domains and crosslinked terms (according to shared domain-centric ontology annotations);
+				<li><a href="/dcGO/enrichment" target="enrichment analysis"><i class="fa fa-edge fa-1x"></i>&nbsp;ENRICHMENT ANALYSIS</a>, identifying the knowledge of functions, phenotypes and diseases enriched/over-represented within an input list of protein domains.
+				</ul>
+				</h5>
+				</fieldset>
+				
+				<br>
+				
+				<fieldset>
+				<h5 class="about_title"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Please refer to <a href="/dcGO/manual" target="use manual"><i class="fa fa-book fa-1x"></i>&nbsp;User Manual</a> detailing how to mine the dcGO resource.</h5>
+				</fieldset>
+				
+				<br>
+				
+			 </div>
+		  </div>
+	   </div>
+
+	
+	   <!-- panel 2 -->
+	   <div class="panel panel-warning" id="panel2">
+		  <div class="panel-heading">
+			 <h4 class="panel-title" id="bookmark2">
+				<a id="barplot-button" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+				   <i class="fa fa-plus-circle"></i><strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Download the MySQL relational database along with detailed documentation on table schema and usage">&nbsp;&nbsp;MYSQL</strong></a>
+				</a>
+			 </h4>
+		  </div>
+		  <div id="collapse2" class="panel-collapse collapse">
+			 <div class = "panel-body">
+			 
+				<h4><a class="btn btn-warning btn-sm active" role="button" href="/app/img/dcGOdb_202301.sql.gz" download="dcGOdb_202301.sql.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> dcGOdb_202301.sql.gz</a><span class="sandy_text">&nbsp;&nbsp;<i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;contains 9 tables, with the schema outlined below:</span></h4>
+				
+				<hr>
+				
+<table cellspacing='0' cellpadding='0' width=98%>
+<tr>
+<td align=center><IMG src="/app/img/dcGOdb_schema_202211.png" name="schema" align="bottom" width="500" border="0" id="schema" class="img_responsive">
+</td>
+</tr>
+<tr>
+<td align=center>
+<P class="text_center">
+<I><B></B></I></P>
+</td>
+</tr>
+</table>
+
+<hr>
+				
+<div class="tabber" id="sandy_tab">
+    
+    <div class="tabbertab">
+    <h2><a>interpro_info</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;A table about InterPro family domains</span>
+    <span class="sandy_text">&nbsp;&nbsp;<a class="btn btn-warning btn-sm active" role="button" href="/app/img/Table_interpro_info.txt.gz" download="Table_interpro_info.txt.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> Table_interpro_info.txt.gz</a></span>
+    
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">DESC</span> interpro_info;
++-------------+------------------+------+-----+---------+-------+
+| Field       | Type             | Null | Key | Default | Extra |
++-------------+------------------+------+-----+---------+-------+
+| id          | varchar(20)      | NO   | PRI | NULL    |       |
+| description | varchar(255)     | NO   |     | NULL    |       |
+| level       | enum('interpro') | NO   | MUL | NULL    |       |
++-------------+------------------+------+-----+---------+-------+
+    </pre>
+    <font size=3>
+    <ul>
+     <li> The <span style="text-decoration: underline;">id</span> column is the InterPro domain ID</li>
+     <li> The <span style="text-decoration: underline;">description</span> column is the description for InterPro family domains</li>
+     <li> The <span style="text-decoration: underline;">level</span> column is the domain level ('interpro')</li>
+    </ul>
+    </font>
+    </div>
+    
+    <div class="tabbertab">
+    <h2><a>mapping_interpro</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;A table about ontology annotations for InterPro family domains (that is, term-domain mappings)</span>
+    <span class="sandy_text">&nbsp;&nbsp;<a class="btn btn-warning btn-sm active" role="button" href="/app/img/Table_mapping_interpro.txt.gz" download="Table_mapping_interpro.txt.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> Table_mapping_interpro.txt.gz</a></span>
+    
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">DESC</span> mapping_interpro;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| obo       | char(8)     | NO   | PRI | NULL    |                |
+| term_id   | varchar(50) | NO   | PRI | NULL    |                |
+| domain_id | varchar(20) | NO   | PRI | NULL    |                |
+| ascore    | double      | YES  |     | NULL    |                |
+| auto      | int         | NO   | UNI | NULL    | auto_increment |
++-----------+-------------+------+-----+---------+----------------+
+    </pre>
+    <font size=3>
+    <ul>
+     <li> The <span style="text-decoration: underline;">obo</span> column is the ontology</li>
+     <li> The <span style="text-decoration: underline;">term_id</span> column is the ontology term ID</li>
+     <li> The <span style="text-decoration: underline;">domain_id</span> column is the InterPro domain ID</li>
+     <li> The <span style="text-decoration: underline;">ascore</span> column is the annotation score [1-100]</li>
+     <li> The <span style="text-decoration: underline;">auto</span> column is an increasing sequence of unique numbers, collectively acting as a primary key</li>
+    </ul>
+    </font>
+    </div>
+    
+    <div class="tabbertab">
+    <h2><a>mapping_pfam</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;A table about ontology annotations for Pfam family domains (that is, term-domain mappings)</span>
+    <span class="sandy_text">&nbsp;&nbsp;<a class="btn btn-warning btn-sm active" role="button" href="/app/img/Table_mapping_pfam.txt.gz" download="Table_mapping_pfam.txt.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> Table_mapping_pfam.txt.gz</a></span>
+    
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">DESC</span> mapping_pfam;
++-----------+-------------+------+-----+---------+----------------+
+| Field     | Type        | Null | Key | Default | Extra          |
++-----------+-------------+------+-----+---------+----------------+
+| obo       | char(8)     | NO   | PRI | NULL    |                |
+| term_id   | varchar(50) | NO   | PRI | NULL    |                |
+| domain_id | varchar(20) | NO   | PRI | NULL    |                |
+| ascore    | double      | YES  |     | NULL    |                |
+| auto      | int         | NO   | UNI | NULL    | auto_increment |
++-----------+-------------+------+-----+---------+----------------+
+    </pre>
+    <font size=3>
+    <ul>
+     <li> The <span style="text-decoration: underline;">obo</span> column is the ontology</li>
+     <li> The <span style="text-decoration: underline;">term_id</span> column is the ontology term ID</li>
+     <li> The <span style="text-decoration: underline;">domain_id</span> column is the Pfam domain ID</li>
+     <li> The <span style="text-decoration: underline;">ascore</span> column is the annotation score [1-100]</li>
+     <li> The <span style="text-decoration: underline;">auto</span> column is an increasing sequence of unique numbers, collectively acting as a primary key</li>
+    </ul>
+    </font>
+    </div>
+
+    <div class="tabbertab">
+    <h2><a>mapping_scop</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;A table about ontology annotations for SCOP superfamily and family domains (that is, term-domain mappings)</span>
+    <span class="sandy_text">&nbsp;&nbsp;<a class="btn btn-warning btn-sm active" role="button" href="/app/img/Table_mapping_scop.txt.gz" download="Table_mapping_scop.txt.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> Table_mapping_scop.txt.gz</a></span>
+    
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">DESC</span> mapping_scop;
++-----------+--------------------+------+-----+---------+----------------+
+| Field     | Type               | Null | Key | Default | Extra          |
++-----------+--------------------+------+-----+---------+----------------+
+| obo       | char(8)            | NO   | PRI | NULL    |                |
+| term_id   | varchar(50)        | NO   | PRI | NULL    |                |
+| domain_id | mediumint unsigned | NO   | PRI | NULL    |                |
+| ascore    | double             | YES  |     | NULL    |                |
+| auto      | int                | NO   | UNI | NULL    | auto_increment |
++-----------+--------------------+------+-----+---------+----------------+
+    </pre>
+    <font size=3>
+    <ul>
+     <li> The <span style="text-decoration: underline;">obo</span> column is the ontology</li>
+     <li> The <span style="text-decoration: underline;">term_id</span> column is the ontology term ID</li>
+     <li> The <span style="text-decoration: underline;">domain_id</span> column is the SCOP domain ID</li>
+     <li> The <span style="text-decoration: underline;">ascore</span> column is the annotation score [1-100]</li>
+     <li> The <span style="text-decoration: underline;">auto</span> column is an increasing sequence of unique numbers, collectively acting as a primary key</li>
+    </ul>
+    </font>
+    </div>
+    
+    <div class="tabbertab">
+    <h2><a>pfam_info</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;A table about Pfam family domains</span>
+    <span class="sandy_text">&nbsp;&nbsp;<a class="btn btn-warning btn-sm active" role="button" href="/app/img/Table_pfam_info.txt.gz" download="Table_pfam_info.txt.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> Table_pfam_info.txt.gz</a></span>
+    
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">DESC</span> pfam_info;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| id          | varchar(20)  | NO   | PRI | NULL    |       |
+| description | varchar(255) | NO   |     | NULL    |       |
+| level       | enum('pfam') | NO   | MUL | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+    </pre>
+    <font size=3>
+    <ul>
+     <li> The <span style="text-decoration: underline;">id</span> column is the Pfam domain ID</li>
+     <li> The <span style="text-decoration: underline;">description</span> column is the description for Pfam family domains</li>
+     <li> The <span style="text-decoration: underline;">level</span> column is the domain level ('pfam')</li>
+    </ul>
+    </font>
+    </div>
+    
+    <div class="tabbertab">
+    <h2><a>scop_hie</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;A table about SCOP hierarchy</span>
+    <span class="sandy_text">&nbsp;&nbsp;<a class="btn btn-warning btn-sm active" role="button" href="/app/img/Table_scop_hie.txt.gz" download="Table_scop_hie.txt.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> Table_scop_hie.txt.gz</a></span>
+    
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">DESC</span> scop_hie;
++--------+--------------------+------+-----+---------+----------------+
+| Field  | Type               | Null | Key | Default | Extra          |
++--------+--------------------+------+-----+---------+----------------+
+| parent | mediumint unsigned | NO   | PRI | NULL    |                |
+| child  | mediumint unsigned | NO   | PRI | NULL    |                |
+| auto   | int                | NO   | UNI | NULL    | auto_increment |
++--------+--------------------+------+-----+---------+----------------+
+    </pre>
+    <font size=3>
+    <ul>
+     <li> The <span style="text-decoration: underline;">parent</span> column is the parent SCOP domain ID (i.e. superfamily)</li>
+     <li> The <span style="text-decoration: underline;">child</span> column is the children SCOP domain ID (i.e. family)</li>
+     <li> The <span style="text-decoration: underline;">auto</span> column is an increasing sequence of unique numbers, collectively acting as a primary key</li>
+    </ul>
+    </font>
+    </div>
+    
+    <div class="tabbertab">
+    <h2><a>scop_info</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;A table about SCOP superfamily and family domains</span>
+    <span class="sandy_text">&nbsp;&nbsp;<a class="btn btn-warning btn-sm active" role="button" href="/app/img/Table_scop_info.txt.gz" download="Table_scop_info.txt.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> Table_scop_info.txt.gz</a></span>
+    
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">DESC</span> scop_info;
++-------------+--------------------+------+-----+---------+-------+
+| Field       | Type               | Null | Key | Default | Extra |
++-------------+--------------------+------+-----+---------+-------+
+| id          | mediumint unsigned | NO   | PRI | NULL    |       |
+| description | varchar(255)       | NO   |     | NULL    |       |
+| level       | enum('sf','fa')    | NO   | MUL | NULL    |       |
++-------------+--------------------+------+-----+---------+-------+
+    </pre>
+    <font size=3>
+    <ul>
+     <li> The <span style="text-decoration: underline;">id</span> column is the SCOP domain ID</li>
+     <li> The <span style="text-decoration: underline;">description</span> column is the description for SCOP domains</li>
+     <li> The <span style="text-decoration: underline;">level</span> column is the domain level (i.e., either 'sf' for superfamily or 'fa' for family)</li>
+    </ul>
+    </font>
+    </div>
+    
+    <div class="tabbertab">
+    <h2><a>term_hie</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;A table about ontology hierarchy</span>
+    <span class="sandy_text">&nbsp;&nbsp;<a class="btn btn-warning btn-sm active" role="button" href="/app/img/Table_term_hie.txt.gz" download="Table_term_hie.txt.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> Table_term_hie.txt.gz</a></span>
+    
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">DESC</span> term_hie;
++----------+------------------------+------+-----+---------+----------------+
+| Field    | Type                   | Null | Key | Default | Extra          |
++----------+------------------------+------+-----+---------+----------------+
+| obo      | char(8)                | NO   | PRI | NULL    |                |
+| parent   | varchar(20)            | NO   | PRI | NULL    |                |
+| child    | varchar(20)            | NO   | PRI | NULL    |                |
+| relation | enum('is_a','part_of') | NO   |     | NULL    |                |
+| root     | enum('yes','no')       | NO   |     | NULL    |                |
+| auto     | int                    | NO   | UNI | NULL    | auto_increment |
++----------+------------------------+------+-----+---------+----------------+
+    </pre>
+    <font size=3>
+    <ul>
+     <li> The <span style="text-decoration: underline;">obo</span> column is the ontology</li>
+     <li> The <span style="text-decoration: underline;">parent</span> column is the parent ontology term ID</li>
+     <li> The <span style="text-decoration: underline;">child</span> column is the children ontology term ID</li>
+     <li> The <span style="text-decoration: underline;">relation</span> column is the relation between terms (i.e., either 'is_a' or 'part_of')</li>
+     <li> The <span style="text-decoration: underline;">root</span> column is to whether or not the parent terms are at root (i.e., either 'yes' or 'no')</li>
+     <li> The <span style="text-decoration: underline;">auto</span> column is an increasing sequence of unique numbers, collectively acting as a primary key</li>
+    </ul>
+    </font>
+    </div>
+    
+    <div class="tabbertab">
+    <h2><a>term_info</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;A table about ontology terms</span>
+    <span class="sandy_text">&nbsp;&nbsp;<a class="btn btn-warning btn-sm active" role="button" href="/app/img/Table_term_info.txt.gz" download="Table_term_info.txt.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> Table_term_info.txt.gz</a></span>
+    
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">DESC</span> term_info;
++----------+--------------------+------+-----+---------+----------------+
+| Field    | Type               | Null | Key | Default | Extra          |
++----------+--------------------+------+-----+---------+----------------+
+| id       | varchar(50)        | NO   | MUL | NULL    |                |
+| name     | varchar(255)       | NO   | PRI | NULL    |                |
+| obo      | char(8)            | NO   | PRI | NULL    |                |
+| distance | mediumint unsigned | NO   |     | NULL    |                |
+| auto     | int                | NO   | UNI | NULL    | auto_increment |
++----------+--------------------+------+-----+---------+----------------+
+    </pre>
+    <font size=3>
+    <ul>
+     <li> The <span style="text-decoration: underline;">id</span> column is the ontology term ID</li>
+     <li> The <span style="text-decoration: underline;">name</span> column is the ontology term name</li>
+     <li> The <span style="text-decoration: underline;">obo</span> column is the ontology</li>
+     <li> The <span style="text-decoration: underline;">distance</span> column is the distance to the root term</li>
+     <li> The <span style="text-decoration: underline;">auto</span> column is an increasing sequence of unique numbers, collectively acting as a primary key</li>
+    </ul>
+    </font>
+    </div>
+    
+    <div class="tabbertab tabbertabdefault">
+    <h2><a>USE</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Restore the dcGO MySQL database</span>
+    <pre class="citation_title">
+mysql -u root -p -e "create database dcGOdb;"
+gunzip < dcGOdb_202301.sql.gz | mysql -u root -p dcGOdb
+    </pre>
+    
+    <hr>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Show tables</span>
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">USE</span> dcGOdb;
+mysql> <span class="burgundy_text">SHOW</span> tables;
++------------------+
+| interpro_info    |
+| mapping_interpro |
+| mapping_pfam     |
+| mapping_scop     |
+| pfam_info        |
+| scop_hie         |
+| scop_info        |
+| term_hie         |
+| term_info        |
++------------------+
+    </pre>
+	
+	<hr>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Extract SCOP superfamily domains annotated by the Gene Ontology Biological Process (GOBP) term 'GO:0002376' ('immune system process')</span>
+    <pre class="citation_title">
+mysql> <span class="burgundy_text">SELECT</span> b.id, b.description 
+<span class="burgundy_text">FROM</span> mapping_scop AS a, scop_info AS b 
+<span class="burgundy_text">WHERE</span> a.domain_id=b.id AND b.level='sf' AND a.obo='GOBP' AND a.term_id='GO:0002376'
+<span class="burgundy_text">ORDER BY</span> b.description ASC;
++-------+--------------------------------------------------------------------------+
+| id    | description                                                              |
++-------+--------------------------------------------------------------------------+
+| 47266 | 4-helical cytokines                                                      |
+| 57845 | B-box zinc-binding domain                                                |
+| 55394 | Bactericidal permeability-increasing protein, BPI                        |
+| 56436 | C-type lectin-like                                                       |
+| 49562 | C2 domain (Calcium/lipid-binding domain, CaLB)                           |
+| 52129 | Caspase-like                                                             |
+| 57535 | Complement control module/SCR domain                                     |
+| 49899 | Concanavalin A-like lectins/glucanases                                   |
+| 54403 | Cystatin/monellin                                                        |
+| 54001 | Cysteine proteinases                                                     |
+| 57501 | Cystine-knot cytokines                                                   |
+| 50353 | Cytokine                                                                 |
+| 47986 | DEATH domain                                                             |
+| 57392 | Defensin-like                                                            |
+| 57196 | EGF/Laminin                                                              |
+| 57256 | Elafin-like                                                              |
+| 81321 | Family A G protein-coupled receptor-like                                 |
+| 56496 | Fibrinogen C-terminal domain-like                                        |
+| 49265 | Fibronectin type III                                                     |
+| 47095 | HMG-box                                                                  |
+| 48726 | Immunoglobulin                                                           |
+| 69318 | Integrin alpha N-terminal domain                                         |
+| 69179 | Integrin domains                                                         |
+| 48340 | Interferon-induced guanylate-binding protein 1 (GBP1), C-terminal domain |
+| 54117 | Interleukin 8-like chemokines                                            |
+| 52058 | L domain-like                                                            |
+| 57424 | LDL receptor-like module                                                 |
+| 57959 | Leucine zipper domain                                                    |
+| 54452 | MHC antigen-recognition domain                                           |
+| 52540 | P-loop containing nucleoside triphosphate hydrolases                     |
+| 49417 | p53-like transcription factors                                           |
+| 50729 | PH domain-like                                                           |
+| 56112 | Protein kinase-like (PK-like)                                            |
+| 57850 | RING/U-box                                                               |
+| 54928 | RNA-binding domain, RBD                                                  |
+| 54076 | RNase A-like                                                             |
+| 52047 | RNI-like                                                                 |
+| 55550 | SH2 domain                                                               |
+| 50044 | SH3-domain                                                               |
+| 49879 | SMAD/FHA domain                                                          |
+| 57586 | TNF receptor-like                                                        |
+| 49842 | TNF-like                                                                 |
+| 52200 | Toll/Interleukin receptor TIR domain                                     |
+| 50494 | Trypsin-like serine proteases                                            |
+| 82895 | TSP-1 type 1 repeat                                                      |
++-------+--------------------------------------------------------------------------+
+    </pre>
+    </div>
+    
+    <div class="tabbertab">
+    <h2><a>VERSIONS</a></h2>
+    <br>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Released on JANUARY 2023</span>
+    &nbsp;&nbsp;
+	<a class="btn btn-warning btn-sm active" role="button" href="/app/img/dcGOdb_202301.sql.gz" download="dcGOdb_202301.sql.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> dcGOdb_202301.sql.gz</a>
+	
+	<hr>
+    
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Released on JULY 2022</span>
+    &nbsp;&nbsp;
+	<a class="btn btn-warning btn-sm active" role="button" href="/app/img/dcGOdb_202207.sql.gz" download="dcGOdb_202207.sql.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> dcGOdb_202207.sql.gz</a>
+	
+	<hr>
+    
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Released on SEPTEMBER 2021</span>
+    &nbsp;&nbsp;
+    <a class="btn btn-warning btn-sm active" role="button" href="/app/img/dcGOdb_202109.sql.gz" download="dcGOdb_202109.sql.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> dcGOdb_202109.sql.gz</a>
+	
+	<hr>
+    
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Released on APRIL 2021</span>
+    &nbsp;&nbsp;
+    <a class="btn btn-warning btn-sm active" role="button" href="/app/img/dcGOdb_202104.sql.gz" download="dcGOdb_202104.sql.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> dcGOdb_202104.sql.gz</a>
+    
+    </div>
+    
+</div>
+				
+				
+			 </div>
+		  </div>
+	   </div>
+	   
+	   <!-- panel 3 -->
+	   <div class="panel panel-warning" id="panel3">
+		  <div class="panel-heading">
+			 <h4 class="panel-title" id="bookmark3">
+				<a id="barplot-button" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+				   <i class="fa fa-plus-circle"></i><strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="List of funding sources supporting the dcGO database development">&nbsp;&nbsp;FUNDINGS</strong></a>
+				</a>
+			 </h4>
+		  </div>
+		  <div id="collapse3" class="panel-collapse collapse">
+			<ul>
+	
+			<fieldset>
+				<h5 class="citation_title"><strong>National Natural Science Foundation of China:</strong> 32170663</h5>
+				<p>2022 - 2025</p>
+			</fieldset>
+	
+			<fieldset>
+				<h5 class="citation_title"><strong>Program for Professor of Special Appointment at Shanghai Institutions of Higher Learning:</strong> Eastern Scholar</h5>
+				<p>2020 - 2022</p>
+			</fieldset>
+			
+			<!--
+			<fieldset>
+				<h5 class="citation_title"><strong>BBSRC Tools and Resources Development Fund:</strong> BB/L018543/1</h5>
+				<p>2014 - 2015</p>
+			</fieldset>
+			-->
+			
+			<br>
+			</ul>
+		  </div>
+	   </div>
+	  
+	   <!-- panel 4 -->
+	   <div class="panel panel-warning" id="panel4">
+		  <div class="panel-heading">
+			 <h4 class="panel-title" id="bookmark4">
+				<a id="barplot-button" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+				   <i class="fa fa-plus-circle"></i><strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Key publications related to dcGO">&nbsp;&nbsp;PUBLICATIONS</strong></a>
+				</a>
+			 </h4>
+		  </div>
+		  <div id="collapse4" class="panel-collapse collapse">
+			<ul>
+	
+			<fieldset>
+			<h5 class="citation_title">dcGO: database of domain-centric ontologies on functions, phenotypes, diseases and more</h5>
+			<p><em>Nucleic Acids Research</em> 2013</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gkq1130" target="10.1093/nar/gks1080">10.1093/nar/gks1080</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gks1080" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+	
+			<fieldset>
+			<h5 class="citation_title">SUPERFAMILY 1.75 including a domain-centric gene ontology method</h5>
+			<p><em>Nucleic Acids Research</em> 2011</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gkq1130" target="10.1093/nar/gkq1130">10.1093/nar/gkq1130</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gkq1130" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">A large-scale evaluation of computational protein function prediction</h5>
+			<p><em>Nature Methods</em> 2013</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/nmeth.2340" target="10.1038/nmeth.2340">10.1038/nmeth.2340</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1038/nmeth.2340" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">An expanded evaluation of protein function prediction methods shows an improvement in accuracy</h5>
+			<p><em>Genome biology</em> 2016</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/s13059-016-1037-6" target="10.1186/s13059-016-1037-6">10.1186/s13059-016-1037-6</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/s13059-016-1037-6" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The CAFA challenge reports improved protein function prediction and new functional annotations for hundreds of genes through experimental screens</h5>
+			<p><em>Genome biology</em> 2019</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/s13059-019-1835-8" target="10.1186/s13059-019-1835-8">10.1186/s13059-019-1835-8</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/s13059-019-1835-8" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<br>
+			</ul>
+		  </div>
+	   </div>
+	   
+	   <!-- panel 5 -->
+	   <div class="panel panel-warning" id="panel5">
+		  <div class="panel-heading">
+			 <h4 class="panel-title" id="bookmark5">
+				<a id="barplot-button" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+				   <i class="fa fa-plus-circle"></i><strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Selected citations for dcGO-related publications">&nbsp;&nbsp;SELECTED CITATIONS</strong></a>
+				</a>
+			 </h4>
+		  </div>
+		  <div id="collapse5" class="panel-collapse collapse">
+			<ul>
+
+			<fieldset>
+			<h5 class="citation_title">Zn-regulated GTPase metalloprotein activator 1 modulates vertebrate zinc homeostasis</h5>
+			<p><em>Cell</em> 2022</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.cell.2022.04.011" target="10.1016/j.cell.2022.04.011">10.1016/j.cell.2022.04.011</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.cell.2022.04.011" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+
+			<fieldset>
+			<h5 class="citation_title">Use of viral motif mimicry improves the proteome-wide discovery of human linear motifs</h5>
+			<p><em>Cell Reports</em> 2022</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.celrep.2022.110764" target="10.1016/j.celrep.2022.110764">10.1016/j.celrep.2022.110764</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.celrep.2022.110764" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+
+			<fieldset>
+			<h5 class="citation_title">HPODNets: deep graph convolutional networks for predicting human protein–phenotype associations</h5>
+			<p><em>Bioinformatics</em> 2022</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/bioinformatics/btab729" target="10.1093/bioinformatics/btab729">10.1093/bioinformatics/btab729</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/bioinformatics/btab729" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">An integrated network representation of multiple cancer-specific data for graph-based machine learning</h5>
+			<p><em>npj Systems Biology and Applications</em> 2022</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/s41540-022-00226-9" target="10.1038/s41540-022-00226-9">10.1038/s41540-022-00226-9</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1038/s41540-022-00226-9" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Analysis of Host–Bacteria Protein Interactions Reveals Conserved Domains and Motifs That Mediate Fundamental Infection Pathways</h5>
+			<p><em>International Journal of Molecular Sciences</em> 2022</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.3390/ijms231911489" target="10.3390/ijms231911489">10.3390/ijms231911489</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.3390/ijms231911489" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The Genome of the Mimosoid Legume Prosopis cineraria, a Desert Tree</h5>
+			<p><em>International Journal of Molecular Sciences</em> 2022</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.3390/ijms23158503" target="10.3390/ijms23158503">10.3390/ijms23158503</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.3390/ijms23158503" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Transcriptome Profiling and Functional Validation of RING-Type E3 Ligases in Halophyte Sesuvium verrucosum under Salinity Stress</h5>
+			<p><em>International Journal of Molecular Sciences</em> 2022</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.3390/ijms23052821" target="10.3390/ijms23052821">10.3390/ijms23052821</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.3390/ijms23052821" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Spruce giga-genomes: structurally similar yet distinctive with differentially expanding gene families and rapidly evolving genes</h5>
+			<p><em>The Plant Journal</em> 2022</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1111/tpj.15889" target="10.1111/tpj.15889">10.1111/tpj.15889</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1111/tpj.15889" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Assigning protein function from domain-function associations using DomFun</h5>
+			<p><em>BMC bioinformatics</em> 2022</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/s12859-022-04565-6" target="10.1186/s12859-022-04565-6">10.1186/s12859-022-04565-6</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/s12859-022-04565-6" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Large-scale genome sequencing reveals the driving forces of viruses in microalgal evolutions</h5>
+			<p><em>Cell Host & Microbe</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.chom.2020.12.005" target="10.1016/j.chom.2020.12.005">10.1016/j.chom.2020.12.005</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.chom.2020.12.005" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">RUNX1/RUNX1T1 mediates alternative splicing and reorganises the transcriptional landscape in leukemia</h5>
+			<p><em>Nature Communications</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/s41467-020-20848-z" target="10.1038/s41467-020-20848-z">10.1038/s41467-020-20848-z</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1038/s41467-020-20848-z" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Analysis of diverse eukaryotes suggests the existence of an ancestral mitochondrial apparatus derived from the bacterial type II secretion system</h5>
+			<p><em>Nature Communications</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/s41467-021-23046-7" target="10.1038/s41467-021-23046-7">10.1038/s41467-021-23046-7</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1038/s41467-021-23046-7" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Epidermal galactose spurs chytrid virulence and predicts amphibian colonization</h5>
+			<p><em>Nature Communications</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/s41467-021-26127-9" target="10.1038/s41467-021-26127-9">10.1038/s41467-021-26127-9</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1038/s41467-021-26127-9" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">HMMER web server: interactive sequence similarity searching</h5>
+			<p><em>Nucleic Acids Research</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gkr367" target="10.1093/nar/gkr367">10.1093/nar/gkr367</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gkr367" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Genomic insights into the host specific adaptation of the Pneumocystis genus</h5>
+			<p><em>Communications Biology</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/s42003-021-01799-7" target="10.1038/s42003-021-01799-7">10.1038/s42003-021-01799-7</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1038/s42003-021-01799-7" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The analysis on the human protein domain targets and host-like interacting motifs for the MERS-CoV and SARS-CoV/CoV-2 infers the molecular mimicry of coronavirus</h5>
+			<p><em>PLos One</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1371/journal.pone.0246901" target="10.1371/journal.pone.0246901">10.1371/journal.pone.0246901</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1371/journal.pone.0246901" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Up-regulation of apoptotic- and cell survival-related gene pathways following exposures of western corn rootworm to B. thuringiensis crystalline pesticidal proteins in transgenic maize roots</h5>
+			<p><em>BMC Genomics</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/s12864-021-07932-4" target="10.1186/s12864-021-07932-4">10.1186/s12864-021-07932-4</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/s12864-021-07932-4" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The completed genome sequence of the pathogenic ascomycete fungus Penicillium digitatum</h5>
+			<p><em>Genomics</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.ygeno.2021.01.001" target="10.1016/j.ygeno.2021.01.001">10.1016/j.ygeno.2021.01.001</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.ygeno.2021.01.001" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Genome reduction and relaxed selection is associated with the transition to symbiosis in the basidiomycete genus Podaxis</h5>
+			<p><em>iScience</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.isci.2021.102680" target="10.1016/j.isci.2021.102680">10.1016/j.isci.2021.102680</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.isci.2021.102680" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">An adaptable and non-invasive method for tracking Bifidobacterium animalis subspecies lactis 420 in the mouse gut</h5>
+			<p><em>Journal of Microbiological Methods</em> 2021</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.mimet.2021.106302" target="10.1016/j.mimet.2021.106302">10.1016/j.mimet.2021.106302</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.mimet.2021.106302" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Mutations disrupting neuritogenesis genes confer risk for cerebral palsy</h5>
+			<p><em>Nature Genetics</em> 2020</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/s41588-020-0695-1" target="10.1038/s41588-020-0695-1">10.1038/s41588-020-0695-1</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1038/s41588-020-0695-1" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Soil Microbes Trade-Off Biogeochemical Cycling for Stress Tolerance Traits in Response to Year-Round Climate Change</h5>
+			<p><em>Frontiers in Microbiology</em> 2020</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.3389/fmicb.2020.00616" target="10.3389/fmicb.2020.00616">10.3389/fmicb.2020.00616</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.3389/fmicb.2020.00616" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Learning a functional grammar of protein domains using natural language word embedding techniques</h5>
+			<p><em>Proteins</em> 2020</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1002/prot.25842" target="10.1002/prot.25842">10.1002/prot.25842</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1002/prot.25842" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Genomic Sequencing of Phyllosticta citriasiana Provides Insight Into Its Conservation and Diversification With Two Closely Related Phyllosticta Species Associated With Citrus</h5>
+			<p><em>Frontiers in Microbiology</em> 2020</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.3389/fmicb.2019.02979" target="10.3389/fmicb.2019.02979">10.3389/fmicb.2019.02979</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.3389/fmicb.2019.02979" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Family-specific analysis of variant pathogenicity prediction tools</h5>
+			<p><em>NAR Genomics and Bioinformatics</em> 2020</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nargab/lqaa014" target="10.1093/nargab/lqaa014">10.1093/nargab/lqaa014</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nargab/lqaa014" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">An Evaluation of Nephrology Literature for Transparency and Reproducibility Indicators: Cross-Sectional Review</h5>
+			<p><em>Kidney International Reports</em> 2020</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.ekir.2019.11.001" target="10.1016/j.ekir.2019.11.001">10.1016/j.ekir.2019.11.001</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.ekir.2019.11.001" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Abiotic and past climatic conditions drive protein abundance variation among natural populations of the caddisfly Crunoecia irrorata</h5>
+			<p><em>Scientific Reports</em> 2020</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/s41598-020-72569-4" target="10.1038/s41598-020-72569-4">10.1038/s41598-020-72569-4</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1038/s41598-020-72569-4" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The Genome3D Consortium for Structural Annotations of Selected Model Organisms</h5>
+			<p><em>Protein Structure Prediction</em> 2020</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1007/978-1-0716-0708-4_3" target="10.1007/978-1-0716-0708-4_3">10.1007/978-1-0716-0708-4_3</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1007/978-1-0716-0708-4_3" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Classification and functional analyses of putative virulence factors of Mycobacterium tuberculosis: A combined sequence and structure based study</h5>
+			<p><em>Computational Biology and Chemistry</em> 2020</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.compbiolchem.2020.107270" target="10.1016/j.compbiolchem.2020.107270">10.1016/j.compbiolchem.2020.107270</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.compbiolchem.2020.107270" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Family-Specific Gains and Losses of Protein Domains in the Legume and Grass Plant Families</h5>
+			<p><em>Evolutionary bioinformatics</em> 2020</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1177/1176934320939943" target="10.1177/1176934320939943">10.1177/1176934320939943</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1177/1176934320939943" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The CAFA challenge reports improved protein function prediction and new functional annotations for hundreds of genes through experimental screens</h5>
+			<p><em>Genome biology</em> 2019</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/s13059-019-1835-8" target="10.1186/s13059-019-1835-8">10.1186/s13059-019-1835-8</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/s13059-019-1835-8" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The SUPERFAMILY 2.0 database: a significant proteome update and a new webserver</h5>
+			<p><em>Nucleic Acids Research</em> 2019</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gky1130" target="10.1093/nar/gky1130">10.1093/nar/gky1130</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gky1130" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+
+			<fieldset>
+			<h5 class="citation_title">InterPro in 2019: improving coverage, classification and access to protein sequence annotations</h5>
+			<p><em>Nucleic Acids Research</em> 2019</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gky1100" target="10.1093/nar/gky1100">10.1093/nar/gky1100</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gky1100" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">NetGO: improving large-scale protein function prediction with massive network information</h5>
+			<p><em>Nucleic Acids Research</em> 2019</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gkz388" target="10.1093/nar/gkz388">10.1093/nar/gkz388</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gkz388" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Effusion: prediction of protein function from sequence similarity networks</h5>
+			<p><em>Bioinformatics</em> 2019</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/bioinformatics/bty672" target="10.1093/bioinformatics/bty672">10.1093/bioinformatics/bty672</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/bioinformatics/bty672" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Pathway-specific protein domains are predictive for human diseases</h5>
+			<p><em>PLoS Computational Biology</em> 2018</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1371/journal.pcbi.1007052" target="10.1371/journal.pcbi.1007052">10.1371/journal.pcbi.1007052</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1371/journal.pcbi.1007052" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">PANNZER2: a rapid functional annotation web server</h5>
+			<p><em>Nucleic Acids Research</em> 2018</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gky350" target="10.1093/nar/gky350">10.1093/nar/gky350</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gky350" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">BUSCA: an integrative web server to predict subcellular localization of proteins</h5>
+			<p><em>Nucleic Acids Research</em> 2018</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gky320" target="10.1093/nar/gky320">10.1093/nar/gky320</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gky320" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The Human Phenotype Ontology in 2017</h5>
+			<p><em>Nucleic Acids Research</em> 2017</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gkw1039" target="10.1093/nar/gkw1039">10.1093/nar/gkw1039</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gkw1039" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The Functional Impact of Alternative Splicing in Cancer</h5>
+			<p><em>Cell Reports</em> 2017</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.celrep.2017.08.012" target="10.1016/j.celrep.2017.08.012">10.1016/j.celrep.2017.08.012</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.celrep.2017.08.012" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">XGR software for enhanced interpretation of genomic summary data, illustrated by application to immunological traits</h5>
+			<p><em>Genome Medicine</em> 2016</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/s13073-016-0384-y" target="10.1186/s13073-016-0384-y">10.1186/s13073-016-0384-y</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/s13073-016-0384-y" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">UniProt-DAAC: domain architecture alignment and classification, a new method for automatic functional annotation in UniProtKB</h5>
+			<p><em>Bioinformatics</em> 2016</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/bioinformatics/btw114" target="10.1093/bioinformatics/btw114">10.1093/bioinformatics/btw114</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/bioinformatics/btw114" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Schistosoma mansoni Egg, Adult Male and Female Comparative Gene Expression Analysis and Identification of Novel Genes by RNA-Seq</h5>
+			<p><em>PLoS Neglected Tropical Diseases</em> 2016</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1371/journal.pntd.0004334" target="10.1371/journal.pntd.0004334">10.1371/journal.pntd.0004334</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1371/journal.pntd.0004334" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Comparative Genomic Analysis of Drechmeria coniospora Reveals Core and Specific Genetic Requirements for Fungal Endoparasitism of Nematodes</h5>
+			<p><em>PLoS Genetics</em> 2016</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1371/journal.pgen.1006017" target="10.1371/journal.pgen.1006017">10.1371/journal.pgen.1006017</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1371/journal.pgen.1006017" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">An expanded evaluation of protein function prediction methods shows an improvement in accuracy</h5>
+			<p><em>Genome biology</em> 2016</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/s13059-016-1037-6" target="10.1186/s13059-016-1037-6">10.1186/s13059-016-1037-6</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/s13059-016-1037-6" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The mRNA-bound proteome of the human malaria parasite Plasmodium falciparum</h5>
+			<p><em>Genome biology</em> 2016</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/s13059-016-1014-0" target="10.1186/s13059-016-1014-0">10.1186/s13059-016-1014-0</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/s13059-016-1014-0" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Disease Ontology 2015 update: an expanded and updated database of human diseases for linking biomedical knowledge through disease data</h5>
+			<p><em>Nucleic Acids Research</em> 2015</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gku1011" target="10.1093/nar/gku1011">10.1093/nar/gku1011</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gku1011" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">A phylogenomic data-driven exploration of viral origins and evolution</h5>
+			<p><em>Science Advances</em> 2015</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1126/sciadv.1500527" target="10.1126/sciadv.1500527">10.1126/sciadv.1500527</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1126/sciadv.1500527" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The SUPERFAMILY 1.75 database in 2014: a doubling of data</h5>
+			<p><em>Nucleic Acids Research</em> 2015</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gku1041" target="10.1093/nar/gku1041">10.1093/nar/gku1041</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gku1041" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The Disease Ontology: fostering interoperability between biological and clinical human disease-related data</h5>
+			<p><em>Mammalian Genome</em> 2015</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1007/s00335-015-9576-9" target="10.1007/s00335-015-9576-9">10.1007/s00335-015-9576-9</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1007/s00335-015-9576-9" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The language of the protein universe</h5>
+			<p><em>Current Opinion in Genetics & Development</em> 2015</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.gde.2015.08.010" target="10.1016/j.gde.2015.08.010">10.1016/j.gde.2015.08.010</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.gde.2015.08.010" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The Classification and Evolution of Enzyme Function</h5>
+			<p><em>Biophysical Journal</em> 2015</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.bpj.2015.04.020" target="10.1016/j.bpj.2015.04.020">10.1016/j.bpj.2015.04.020</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.bpj.2015.04.020" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Functional prediction of hypothetical proteins in human adenoviruses</h5>
+			<p><em>Bioinformatics</em> 2015</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.6026/97320630011466" target="10.6026/97320630011466">10.6026/97320630011466</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.6026/97320630011466" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The Human Phenotype Ontology project: linking molecular biology and disease through phenotype data</h5>
+			<p><em>Nucleic Acids Research</em> 2014</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gkt1026" target="10.1093/nar/gkt1026">10.1093/nar/gkt1026</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gkt1026" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">Global Patterns of Protein Domain Gain and Loss in Superkingdoms</h5>
+			<p><em>PLoS Computational Biology</em> 2014</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1371/journal.pcbi.1003452" target="10.1371/journal.pcbi.1003452">10.1371/journal.pcbi.1003452</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1371/journal.pcbi.1003452" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The ‘dnet’ approach promotes emerging research on cancer patient survival</h5>
+			<p><em>Genome Medicine</em> 2014</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/s13073-014-0064-8" target="10.1186/s13073-014-0064-8">10.1186/s13073-014-0064-8</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/s13073-014-0064-8" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The Evolution of Human Cells in Terms of Protein Innovation</h5>
+			<p><em>Molecular Biology and Evolution</em> 2014</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/molbev/mst139" target="10.1093/molbev/mst139">10.1093/molbev/mst139</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/molbev/mst139" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">dcGOR: An R Package for Analysing Ontologies and Protein Domain Annotations</h5>
+			<p><em>PLoS Computational Biology</em> 2014</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1371/journal.pcbi.1003929" target="10.1371/journal.pcbi.1003929">10.1371/journal.pcbi.1003929</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1371/journal.pcbi.1003929" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">A large-scale evaluation of computational protein function prediction</h5>
+			<p><em>Nature Methods</em> 2013</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/nmeth.2340" target="10.1038/nmeth.2340">10.1038/nmeth.2340</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1038/nmeth.2340" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">A daily-updated tree of (sequenced) life as a reference for genome research</h5>
+			<p><em>Scientific Reports</em> 2013</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/srep02015" target="10.1038/srep02015">10.1038/srep02015</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1038/srep02015" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">A domain-centric solution to functional genomics via dcGO Predictor</h5>
+			<p><em>BMC Bioinformatics</em> 2013</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/1471-2105-14-S3-S9" target="10.1186/1471-2105-14-S3-S9">10.1186/1471-2105-14-S3-S9</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/1471-2105-14-S3-S9" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The 2013 Nucleic Acids Research Database Issue and the online Molecular Biology Database Collection</h5>
+			<p><em>Nucleic Acids Research</em> 2013</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gks1297" target="10.1093/nar/gks1297">10.1093/nar/gks1297</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gks1297" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<br>
+			</ul>
+		  </div>
+	   </div>
+	   
+	</div>
+
+</div>
+
+

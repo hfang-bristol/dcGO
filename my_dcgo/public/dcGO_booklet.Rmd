@@ -1,0 +1,251 @@
+---
+documentclass: book
+classoption: oneside
+title: "User manual for the dcGO database in 2023"
+date: "`r Sys.Date()`"
+vignette: >
+ %\VignetteIndexEntry{dcGO Booklet}
+ %\VignetteEngine{knitr::rmarkdown}
+ %\VignetteEncoding{UTF-8}
+output: 
+  BiocStyle::html_document:
+        toc: true
+        toc_depth: 3
+        number_sections: true
+        theme: journal
+        highlight: monochrome
+        toc_float: true
+        code_folding: hide
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(collapse=TRUE, comment="##")
+knitr::opts_chunk$set(dpi=300)
+knitr::opts_chunk$set(cache=FALSE)
+knitr::opts_chunk$set(echo=TRUE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(fig_cap="yes")
+knitr::opts_chunk$set(eval=F)
+```
+
+
+# Overview {#index}
+
+```{r logo, fig.cap="The logo for the domain-centric Gene Ontology (dcGO) resource.", fig.width=10, fig.height=5.2, echo=FALSE, eval=T, fig.align="center",out.width="40%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.logo.png")
+grid.raster(img)
+```
+
+<hr>
+
+## Motivations
+
+Most available protein sequences lack biological annotation, and protein structural domains are less studied than proteins in terms of ontology annotation. The dcGO database addresses this need, enabling systematic annotations of domains using ontologies.
+
+
+## Timelines
+
+The idea/method of mapping Gene Ontology (GO) terms onto protein superfamily and family domains was first described in [the SUPERFAMILY 2011 Nucleic Acids Research database issue paper](https://www.ncbi.nlm.nih.gov/pubmed/21062816). As a result of this generalised method applied to ontologies of diverse contexts, we generated a resource [dcGO](/dcGO) officially released in [the dcGO 2013 Nucleic Acids Research database issue paper](https://www.ncbi.nlm.nih.gov/pubmed/23161684), developed the software ([dcGOR](https://www.ncbi.nlm.nih.gov/pubmed/)), and supported the updates of the SUPERFAMILY database (see [2015](https://www.ncbi.nlm.nih.gov/pubmed/25414345) and [2019](https://www.ncbi.nlm.nih.gov/pubmed/30445555)).
+
+
+## Contents
+
+Over time (10 years on), the dcGO resource has evolved to support annotations for protein domains of different levels, not only [SCOP superfamilies and families](https://www.ncbi.nlm.nih.gov/pubmed/31724711), but also [Pfam families](https://www.ncbi.nlm.nih.gov/pubmed/33125078) and [InterPro families](https://www.ncbi.nlm.nih.gov/pubmed/33156333). Such annotations are made available in a wide variety of knowledge contexts:
+
+- functions ([GO](https://www.ncbi.nlm.nih.gov/pubmed/10802651))
+
+- pathways (see [KEGG](https://www.ncbi.nlm.nih.gov/pubmed/33125081), [REACTOME](https://www.ncbi.nlm.nih.gov/pubmed/31691815), [PANTHER](https://www.ncbi.nlm.nih.gov/pubmed/33290554), [WikiPathways](https://www.ncbi.nlm.nih.gov/pubmed/33211851) and [MitoCarta](https://www.ncbi.nlm.nih.gov/pubmed/33174596))
+
+- transcriptional regulators (see [ENRICHR Consensus TFs](https://www.ncbi.nlm.nih.gov/pubmed/27141961) and [TRRUST TFs](https://www.ncbi.nlm.nih.gov/pubmed/29087512))
+
+- molecular hallmarks (see [MSIGDB hallmarks](https://www.ncbi.nlm.nih.gov/pubmed/26771021))
+
+- phenotypes in [human](https://www.ncbi.nlm.nih.gov/pubmed/33264411) and [mouse](https://www.ncbi.nlm.nih.gov/pubmed/31696236), and other model organisms (including [worm](https://www.ncbi.nlm.nih.gov/pubmed/31642470), [fly](https://www.ncbi.nlm.nih.gov/pubmed/35266522), [zebrafish](https://www.ncbi.nlm.nih.gov/pubmed/21036866) and [Arabidopsis](https://www.ncbi.nlm.nih.gov/pubmed/22140109))
+
+- diseases (see [Disease Ontology](https://www.ncbi.nlm.nih.gov/pubmed/30407550) and [EFO disease traits](https://www.ncbi.nlm.nih.gov/pubmed/30445434))
+
+- drugs (see [DGIdb druggable categories](https://www.ncbi.nlm.nih.gov/pubmed/29156001) and [Open Targets tractability buckets](https://www.ncbi.nlm.nih.gov/pubmed/33196847))
+
+
+## Mining
+
+In parallel with the growth in knowledgebase (both protein domains and biomedical ontologies), the dcGO now provides the users with new web interfaces and various mining opportunities, including: 
+
+- [FACETED SEARCH](/dcGO), an entry point to mine the resource with keywords in query returning term-specific pages and domain-specific pages; 
+
+- [ONTOLOGY HIERARCHY](/dcGO/hie), browsing alongside annotated domains and crosslinked terms according to shared domain annotations; and 
+
+- [ENRICHMENT ANALYSIS](/dcGO/enrichment), identifying the knowledge of functions, phenotypes, diseases and many others that are enriched/over-represented within an input list of protein domains; see [Example Output](/app/examples/_tmp_RMD_enrichment.html).
+
+
+
+```{r, eval=FALSE, echo=FALSE}
+cd ~/Sites/XGR/dcGO-site/BOOKLET
+################################################
+R
+library(tidyverse)
+
+## bookdown::render_book + bookdown::gitbook
+## use configuration in '_output.yml' and '_bookdown.yml'
+bookdown::render_book("now.dcGO_booklet.Rmd", c("bookdown::gitbook","bookdown::pdf_book","bookdown::tufte_html_book")[1])
+
+bookdown::render_book("now.dcGO_booklet.Rmd", c("bookdown::gitbook","bookdown::pdf_book","bookdown::tufte_html_book")[2])
+
+q('no')
+####################################################
+
+###########
+# huawei
+###########
+scp now.dcGO_booklet.html root@www.protdomainonto.com:/var/www/html/dcGO/dcGO_booklet.html
+scp now.dcGO_booklet.pdf root@www.protdomainonto.com:/var/www/html/dcGO/dcGO_booklet.pdf
+scp now.dcGO_booklet.Rmd root@www.protdomainonto.com:/var/www/html/dcGO/dcGO_booklet.Rmd
+
+## dcGObooklet
+rsync -avzhe ssh --progress --delete ~/Sites/XGR/dcGO-site/BOOKLET/dcGObooklet root@www.protdomainonto.com:/var/www/html/dcGO
+
+##########################
+```
+
+
+
+# Landing Frontpage
+
+```{r app-front, fig.cap="The landing frontpage of the dcGO webserver, featuring 3 key mining opportunities: `FACETED SEARCH`, `ONTOLOGY HIERARCHY` and `ENRICHMENT ANALYSIS`.", fig.width=10, fig.height=6.2, echo=FALSE, eval=TRUE, fig.align="center",out.width="90%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.app.front.png")
+grid.raster(img)
+```
+
+
+# Mobile-First Webserver
+
+The dcGO is developed as a mobile-first and responsive webserver (`the frontend`), while `the backend` is a next-generation Perl web framework that enables real-time access and mining of the dcGO resource.
+
+<hr>
+
+```{r app-iphone, fig.cap="The screenshots for the dcGO visited using a smartphone. Left: the frontpage; Right: the help page.", fig.width=10, fig.height=7.8, echo=FALSE, eval=TRUE, fig.align="center",out.width="90%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.app.iphone.png")
+grid.raster(img)
+```
+
+
+# Faceted Search
+
+The faceted search is a mining hub, providing hyperlinks from the search results. In addition to identifiers, full text query is also supported for protein domains and ontology terms. Search results for domains are hyperlinked to domain-specific pages with the tabular display for ontology terms used to annotate them. Search results for a particular ontology terms are hyperlinked to the term-specific page, displaying the term information, annotated domains (of different levels), and where available, crosslinked terms (according to the degree of shared annotations for SCOP domains).
+
+<hr>
+
+```{r search, fig.cap="Faceted search enabling various mining opportunities of the dcGO resource, all in one go.", fig.width=10, fig.height=5.8, echo=FALSE, eval=T, fig.align="center",out.width="100%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.search.png")
+grid.raster(img)
+```
+
+
+# Ontology Hierarchy
+
+```{r hie-interface, fig.cap="The ontology hierarchy interfaces for exploring ontology terms and annotated domains, illustrated for an EFO term 'disease' ('EFO:0000408'). `(A)` The hierarchy page listing all ontologies supported, including Experimental Factor Ontology (EFO). `(B)` The 'disease' term and its children terms (per child term providing a hyperlink to the hierarchy page and a hyperlink to the term-specific page). `(C)` The hierarchy page for the child term 'immune system disease' ('EFO:0000540'). `(D)` The term-specific page for the child term 'immune system disease' ('EFO:0000540'), which provides the list of annotated domains, displayed separately for SCOP, Pfam and InterPro; see `(E)`. Also displayed is the list of crosslinked terms, where available; see `(F)`.", fig.width=10, fig.height=14.2, echo=FALSE, eval=TRUE, fig.align="center",out.width="100%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.hie.interface.png")
+grid.raster(img)
+```
+
+
+# Enrichment Analysis
+
+## User-input interface
+
+> **Input**
+
+- `Step 1` and `Step 2`: a list of user-input domains, together with the domain type specified. Please make sure that the input domain identifiers (`Step 2`) are consistent with the domain level (`Step 1`); otherwise, the error messages will be prompted
+
+- `Step 3`: a list of ontologies supported.
+
+- `More Controls`: parameters fine-tuned for steps described above.
+
+> **Output**
+
+- [Example Output](/app/examples/_tmp_RMD_enrichment.html) includes an interactive table for enriched ontology terms, and a dotplot (illustrating enriched ontology terms). A summary of input data and the runtime (computed on the server side) is also returned to the users for the reference.
+
+<hr>
+
+
+```{r enrichment-interface, fig.cap="The interface of enrichment analysis. The `Show/Hide Info` toggle button contains the help information on how to use , including input, output and other useful information.", fig.width=10, fig.height=9.1, echo=FALSE, eval=TRUE, fig.align="center",out.width="90%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.enrichment.interface.png")
+grid.raster(img)
+```
+
+
+## Enrichment results
+
+- Under the tab `Input domain information`, `An interactive table` lists user-input domains that are also hyperlinked to `the domain-specific information page`.
+
+```{r enrichment-results-input, fig.cap="The user-input data under the tab `Input domain information` returned for the exploration.", fig.width=10, fig.height=6.3, echo=FALSE, eval=TRUE, fig.align="center",out.width="95%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.enrichment.results_input.png")
+grid.raster(img)
+```
+
+<br>
+<hr>
+
+- Under the tab `Enriched ontology terms`, `An interactive table` lists enriched ontology terms that are also hyperlinked to `the term-specific information page`.
+
+```{r enrichment-results-output, fig.cap="An interactive table listing enriched ontology terms under the tab `Enriched ontology terms`.", fig.width=10, fig.height=6.3, echo=FALSE, eval=TRUE, fig.align="center",out.width="95%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.enrichment.results_output.png")
+grid.raster(img)
+```
+
+<br>
+<hr>
+
+- Under the tab `Dotplot for enriched ontology terms`, `An dotplot` illustrates enriched ontology terms. Also provided is the downloadable PDF file.
+
+```{r enrichment-results-dotplot, fig.cap="A dotplot for enriched ontology terms.", fig.width=10, fig.height=7.3, echo=FALSE, eval=TRUE, fig.align="center",out.width="95%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.enrichment.results_dotplot.png")
+grid.raster(img)
+```
+
+
+## Info button
+
+The user-request interface has the `Show/Hide Info` toggle button that contains  the information on use, including the details on input, output and other useful information, while the `Example Input/Output` button showcases the example input/output.
+
+<hr>
+
+```{r enrichment-info, fig.cap="The screenshot for the `Show/Hide Info` toggle button in the user-input interface.", fig.width=10, fig.height=6.3, echo=FALSE, eval=TRUE, fig.align="center",out.width="95%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.enrichment.info.png")
+grid.raster(img)
+```
+
+
+## Error messages
+
+The error messages will be prompted if the inputs are invalid (see the screenshot below). Notably, in the results page, a summary of input domain data is also returned to the users for the reference.
+
+<hr>
+
+```{r enrichment-error, fig.cap="The screenshot for the error messages appeared when the input is invalid.", fig.width=10, fig.height=3.7, echo=FALSE, eval=TRUE, fig.align="center",out.width="95%"}
+library(png)
+library(grid)
+img <- readPNG("booklet.dcGO.enrichment.error.png")
+grid.raster(img)
+```

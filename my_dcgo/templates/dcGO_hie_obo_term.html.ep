@@ -1,0 +1,242 @@
+% layout 'default', tab => '/dcGO/term';
+% title 'dcGO - Protein domains per term';
+
+% content_for css => begin
+	
+	<style>
+		thead > tr > th {
+			font-size: 14px;
+			color: rgba(0,0,0,0.8);
+			text-align: center;
+			/*background-color: rgba(204,204,204,0.5);*/
+			background-color: rgba(249,178,51,0.1);
+			/*border: 1px solid rgba(204,204,204,0.5);*/
+			border: 1px solid rgba(249,178,51,1);
+		}
+		
+		thead > tr > th.my_style {
+			font-size: 14px;
+			color: rgba(0,0,0,0.8);
+			text-align: center;
+			/*background-color: rgba(204,204,204,0.5);*/
+			background-color: rgba(249,178,51,0.2);
+			/*border: 1px solid rgba(204,204,204,0.5);*/
+			border: 1px solid rgba(249,178,51,1);
+		}
+		
+		tbody > tr > td {
+			font-size: 13px;
+			text-align: left;
+			/*border: 1px solid #ccc;*/
+			border: 1px solid rgba(249,178,51,0.2);
+		}
+		tbody > tr > td:first-child {
+			text-align: right;
+			/*border: 1px solid rgba(204,204,204,0);*/
+			border: 1px solid rgba(249,178,51,0.1);
+		}
+		tbody > tr > td:nth-last-child(1) {
+			text-align: left;
+			/*border: 1px solid rgba(204,204,204,0);*/
+			border: 1px solid rgba(249,178,51,0.1);
+		}
+		tbody > tr > td:nth-last-child(2) {
+			text-align: left;
+			/*border: 1px solid rgba(204,204,204,0);*/
+			border: 1px solid rgba(249,178,51,0.1);
+		}
+		
+		tbody > tr > td:hover {
+			-moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
+			-webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
+			box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
+		}
+
+		tfoot > tr > th {
+			font-size: 11px;
+			color: rgba(0,0,0,0.8);
+			text-align: center;
+			/*border: 1px solid rgba(204,204,204,0.2);*/
+			border: 1px solid rgba(249,178,51,0.5);
+			background-color: transparent;
+		}
+		
+	</style>
+	
+% end
+
+% content_for scripts => begin
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			/////////////////////////////////////////
+			% if($rec_term_child ne ''){
+				// menu1_table
+				var table1 = $('#menu1_table').DataTable({
+					"aaData": <%== $rec_term_child %>,
+					"deferRender": true,
+					"lengthMenu": [[-1], ["All"]],
+					"aoColumns": [
+					
+						{
+							mData:"hie",
+							bSearchable: false,
+							asSorting: false,
+							sDefaultContent: "",
+							sWidth: "5%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},
+						{
+							mData:"anno",
+							bSearchable: true,
+							sDefaultContent: "",
+							sWidth: "15%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},
+						{
+							mData:"name",
+							bSearchable: true,
+							sDefaultContent: "",
+							sWidth: "80%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},
+					],
+					// Hidden columns
+					"columnDefs": [
+						{
+							"targets": [0],
+							"sortable": false,
+						},
+					],
+					dom: 'rt',
+
+				});
+				// javascript for menu1_table
+				$('[id^=menu1_table] thead tr th').addClass('rotate');
+				$('[id^=menu1_table] tbody').on('mouseover', 'td', function(){
+					$(this).closest('tr').css("background-color", "rgba(249,178,51,0.2)");
+				});
+				$('[id^=menu1_table] tbody').on('mouseout', 'tr', function(){
+					$(this).css("background-color", "transparent");
+				});
+				$('#mysearch1').on('keyup', function() {
+					table1.search(this.value).draw();
+				});
+			% }
+			
+			
+		});
+	</script>
+% end
+
+
+<%
+
+%>
+
+
+<div class="container">
+	<div class="jumbotron">  
+		
+		<div class="text-right">
+			% if(1){
+				<a href="javascript:newWin('/dcGObooklet/ontology-hierarchy.html', 'dcGObooklet', '909', '1169')"><span class="fa fa-book fa-lg"></span>&nbsp;User Manual</a>
+			% }else{
+				<a href="javascript:newWin('/dcGObooklet/index.html#ontology-hierarchy', 'dcGObooklet', '909', '1169')"><span class="fa fa-book fa-lg"></span>&nbsp;User Manual</a>			
+			% }
+		</div>
+		
+		<div class="text-center">
+		
+		% if($term_data ne ''){
+			% if($term eq 'root'){
+				<h3><a href="/dcGO/hie"><i class="fa fa-sitemap fa-lg"></i>&nbsp;&nbsp;</a>-&nbsp;<%== $term_data->{obo} %></h3>
+			% }else{
+				<h3><a href="/dcGO/hie"><i class="fa fa-sitemap fa-lg"></i>&nbsp;&nbsp;</a>-&nbsp;<%== $term_data->{id} %></h3>
+			% }
+		%}
+		
+		</div>
+		
+	</div>
+</div>
+
+<!-- results -->
+<div id="results-container" class="container collapse in">
+	
+	% if($term_data ne ''){
+    <div class="panel panel-warning"">
+        <div class="panel-heading">
+            <h3 class="panel-title" id="bookmark_general"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;<strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Hierarchy information for the term '<%== $term_data->{name} %>'">Term hierarchy</strong></h3>
+        </div>
+        <div class="panel-body">
+			<dl>
+			
+				<dt><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Term ID</dt>
+				% if($term_data->{id} eq 'root'){
+				<dd><%== $term_data->{id} %></dd>
+				% }else{
+				<dd class ="my-tooltip" data-toggle="tooltip" data-placement="auto top" title="GOTO the term-centric information page"><a href="/dcGO/<%== $obo %>/<%== $term_data->{id} %>" target="_blank"><i class="fa fa-text-width fa-1x"></i>&nbsp;&nbsp;</a><%== $term_data->{id} %></dd>
+				% }
+				
+				
+				<dt><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Term Name</dt>
+				<dd><%== $term_data->{name} %></dd>
+				
+				<dt><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Ontology </dt>
+				<dd class ="my-tooltip" data-toggle="tooltip" data-placement="auto bottom" title="JUMP BACKWARD TO the ontology hierarchy root"><a href="/dcGO/hie/<%== $obo %>/root"><i class="fa fa-fast-backward fa-1x"></i>&nbsp;&nbsp;</a><%== $term_data->{obo} %></dd>
+				
+				
+				% if($rec_term_child ne ''){
+				<hr>
+				<dt><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;List of children terms (n = <%== $term_data->{children} %>)</dt>
+				<br>
+				<div class="panel-group" id="accordion">
+	
+					   <!-- panel 1 -->
+						<div class="panel panel-warning" id="panel1">
+							<div class = "panel-body">
+								<form role="form" id="filter-form">
+									<div class="form-group">
+										<input type="search" class="form-control" placeholder="Please enter a keyword searching for terms (eg interleukin)" id="mysearch1">
+									</div>
+								</form>
+								
+								<table id="menu1_table" class="compact nowrap" cellpadding="5px" cellspacing="0" width="100%">
+									<thead>
+									
+										<tr>
+											<th rowspan="2"></th>
+											<th colspan="2" class="my_style">Children Terms</th>
+										</tr>
+									
+										<tr>
+											<th><div>Term ID</div></th>
+											<th><div>Term Name</div></th>
+										</tr>
+									</thead>
+								</table>
+				
+							</div>
+						</div>
+	
+					</div>
+				% }
+
+			</dl>
+			
+
+			
+        </div>
+    </div>
+	% }
+	
+</div>
+

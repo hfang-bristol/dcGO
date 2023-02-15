@@ -1,0 +1,630 @@
+% layout 'default', tab => '/dcGO/term';
+% title 'dcGO - Protein domains per term';
+
+% content_for css => begin
+	
+	<style>
+		thead > tr > th {
+			font-size: 14px;
+			color: rgba(0,0,0,0.8);
+			text-align: center;
+			/*background-color: rgba(204,204,204,0.5);*/
+			background-color: rgba(249,178,51,0.1);
+			/*border: 1px solid rgba(204,204,204,0.5);*/
+			border: 1px solid rgba(249,178,51,1);
+		}
+		
+		thead > tr > th.my_style {
+			font-size: 14px;
+			color: rgba(0,0,0,0.8);
+			text-align: center;
+			/*background-color: rgba(204,204,204,0.5);*/
+			background-color: rgba(249,178,51,0.2);
+			/*border: 1px solid rgba(204,204,204,0.5);*/
+			border: 1px solid rgba(249,178,51,1);
+		}
+		
+		tbody > tr > td {
+			font-size: 13px;
+			text-align: left;
+			/*border: 1px solid #ccc;*/
+			border: 1px solid rgba(249,178,51,0.2);
+		}
+		tbody > tr > td:first-child {
+			text-align: center;
+			/*border: 1px solid rgba(204,204,204,0);*/
+			border: 1px solid rgba(249,178,51,0.1);
+		}
+		tbody > tr > td:nth-child(2) {
+			text-align: left;
+			/*border: 1px solid rgba(204,204,204,0);*/
+			border: 1px solid rgba(249,178,51,0.1);
+		}
+		tbody > tr > td:nth-last-child(1) {
+			text-align: center;
+			/*border: 1px solid rgba(204,204,204,0);*/
+			border: 1px solid rgba(249,178,51,0.1);
+		}
+		
+		tbody > tr > td:hover {
+			-moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
+			-webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
+			box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.8);
+		}
+
+		tfoot > tr > th {
+			font-size: 11px;
+			color: rgba(0,0,0,0.8);
+			text-align: center;
+			/*border: 1px solid rgba(204,204,204,0.2);*/
+			border: 1px solid rgba(249,178,51,0.5);
+			background-color: transparent;
+		}
+		
+	</style>
+% end
+
+% content_for scripts => begin
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+			
+			/////////////////////////////////////////
+			% if($rec_anno_scop ne ''){
+				// menu1_table
+				var table1 = $('#menu1_table').DataTable({
+					"aaData": <%== $rec_anno_scop %>,
+					"deferRender": true,
+					"lengthMenu": [[5,10,50,-1], [5,10,50,"All"]],
+					"aoColumns": [
+						{
+							mData:"oid",
+							bSearchable: false,
+							asSorting: false,
+							sDefaultContent: "",
+							sWidth: "10%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},
+						{
+							mData:"dlvl",
+							bSearchable: true,
+							sDefaultContent: "",
+							sWidth: "10%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},						
+						{
+							mData:"did",
+							bSearchable: true,
+							sWidth: "10%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+						{
+							mData:"ddes",
+							bSearchable: true,
+							sWidth: "60%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+						{
+							mData:"score",
+							bSearchable: false,
+							sWidth: "10%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+					],
+					// Hidden columns
+					"columnDefs": [
+						{
+							"targets": [0],
+							"sortable": false,
+						},
+					],
+					"order": [[4,"desc"], [1,"asc"], [3,"asc"]],
+					dom: 'Brtlp',
+					buttons: [
+						'copy',
+						'excel',
+						'pdf',
+					],
+
+				});
+				// javascript for menu1_table
+				$('[id^=menu1_table] thead tr th').addClass('rotate');
+				$('[id^=menu1_table] tbody').on('mouseover', 'td', function(){
+					$(this).closest('tr').css("background-color", "rgba(249,178,51,0.2)");
+				});
+				$('[id^=menu1_table] tbody').on('mouseout', 'tr', function(){
+					$(this).css("background-color", "transparent");
+				});
+				$('#mysearch1').on('keyup', function() {
+					table1.search(this.value).draw();
+				});
+			% }
+			
+			/////////////////////////////////////////
+			% if($rec_anno_pfam ne ''){
+				// menu2_table
+				var table2 = $('#menu2_table').DataTable({
+					"aaData": <%== $rec_anno_pfam %>,
+					"deferRender": true,
+					"lengthMenu": [[5,10,50,-1], [5,10,50,"All"]],
+					"aoColumns": [
+						{
+							mData:"oid",
+							bSearchable: false,
+							asSorting: false,
+							sDefaultContent: "",
+							sWidth: "10%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},
+						{
+							mData:"dlvl",
+							bSearchable: true,
+							sDefaultContent: "",
+							sWidth: "10%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},						
+						{
+							mData:"did",
+							bSearchable: true,
+							sWidth: "10%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+						{
+							mData:"ddes",
+							bSearchable: true,
+							sWidth: "10%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+						{
+							mData:"score",
+							bSearchable: false,
+							sWidth: "10%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+					],
+					// Hidden columns
+					"columnDefs": [
+						{
+							"targets": [0],
+							"sortable": false,
+						},
+					],
+					"order": [[4,"desc"], [1,"asc"], [3,"asc"]],
+					dom: 'Brtlp',
+					buttons: [
+						'copy',
+						'excel',
+						'pdf',
+					],
+
+				});
+				// javascript for menu2_table
+				$('[id^=menu2_table] thead tr th').addClass('rotate');
+				$('[id^=menu2_table] tbody').on('mouseover', 'td', function(){
+					$(this).closest('tr').css("background-color", "rgba(249,178,51,0.2)");
+				});
+				$('[id^=menu2_table] tbody').on('mouseout', 'tr', function(){
+					$(this).css("background-color", "transparent");
+				});
+				$('#mysearch2').on('keyup', function() {
+					table2.search(this.value).draw();
+				});
+			% }
+			
+			/////////////////////////////////////////
+			% if($rec_anno_interpro ne ''){
+				// menu3_table
+				var table3 = $('#menu3_table').DataTable({
+					"aaData": <%== $rec_anno_interpro %>,
+					"deferRender": true,
+					"lengthMenu": [[5,10,50,-1], [5,10,50,"All"]],
+					"aoColumns": [
+						{
+							mData:"oid",
+							bSearchable: false,
+							asSorting: false,
+							sDefaultContent: "",
+							sWidth: "10%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},
+						{
+							mData:"dlvl",
+							bSearchable: true,
+							sDefaultContent: "",
+							sWidth: "10%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},						
+						{
+							mData:"did",
+							bSearchable: true,
+							sWidth: "10%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+						{
+							mData:"ddes",
+							bSearchable: true,
+							sWidth: "10%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+						{
+							mData:"score",
+							bSearchable: false,
+							sWidth: "10%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+					],
+					// Hidden columns
+					"columnDefs": [
+						{
+							"targets": [0],
+							"sortable": false,
+						},
+					],
+					"order": [[4,"desc"], [1,"asc"], [3,"asc"]],
+					dom: 'Brtlp',
+					buttons: [
+						'copy',
+						'excel',
+						'pdf',
+					],
+
+				});
+				// javascript for menu3_table
+				$('[id^=menu3_table] thead tr th').addClass('rotate');
+				$('[id^=menu3_table] tbody').on('mouseover', 'td', function(){
+					$(this).closest('tr').css("background-color", "rgba(249,178,51,0.2)");
+				});
+				$('[id^=menu3_table] tbody').on('mouseout', 'tr', function(){
+					$(this).css("background-color", "transparent");
+				});
+				$('#mysearch3').on('keyup', function() {
+					table3.search(this.value).draw();
+				});
+			% }
+			
+			/////////////////////////////////////////
+			% if($rec_crosslink ne ''){
+				// menu4_table
+				var table4 = $('#menu4_table').DataTable({
+					"aaData": <%== $rec_crosslink %>,
+					"deferRender": true,
+					"lengthMenu": [[5,10,50,-1], [5,10,50,"All"]],
+					"aoColumns": [
+						{
+							mData:"query",
+							bSearchable: false,
+							asSorting: false,
+							sDefaultContent: "",
+							sWidth: "10%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},
+						{
+							mData:"obo",
+							bSearchable: false,
+							sDefaultContent: "",
+							sWidth: "10%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},
+						{
+							mData:"oid",
+							bSearchable: true,
+							sDefaultContent: "",
+							sWidth: "10%",
+							mRender: function ( data, type, full ) {
+								return '<strong>' + data + '</strong>';
+							}
+						},						
+						{
+							mData:"oname",
+							bSearchable: true,
+							sWidth: "60%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+						{
+							mData:"zscore",
+							bSearchable: false,
+							sWidth: "5%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+						{
+							mData:"fdr",
+							bSearchable: false,
+							sWidth: "5%",
+							mRender: function(data, type, full) {
+								return '<span style="color:black">'+data+'</span>';
+							}
+						},
+					],
+					// Hidden columns
+					"columnDefs": [
+						{
+							"targets": [0],
+							"sortable": false,
+						},
+					],
+					"order": [[4,"desc"], [5,"asc"], [1,"asc"], [3,"asc"]],
+					dom: 'Brtlp',
+					buttons: [
+						'copy',
+						'excel',
+						'pdf',
+					],
+
+				});
+				// javascript for menu4_table
+				$('[id^=menu4_table] thead tr th').addClass('rotate');
+				$('[id^=menu4_table] tbody').on('mouseover', 'td', function(){
+					$(this).closest('tr').css("background-color", "rgba(249,178,51,0.2)");
+				});
+				$('[id^=menu4_table] tbody').on('mouseout', 'tr', function(){
+					$(this).css("background-color", "transparent");
+				});
+				$('#mysearch4').on('keyup', function() {
+					table4.search(this.value).draw();
+				});
+			% }
+			
+		});
+	</script>
+% end
+
+
+<%
+
+%>
+
+
+<div class="container">
+	<div class="jumbotron">  
+		
+		<div class="text-center">
+			<h3><i class="fa fa-text-width fa-lg"></i>&nbsp;&nbsp;<%== $term %></h3>
+		</div>
+		
+	</div>
+</div>
+
+<!-- results -->
+<div id="results-container" class="container collapse in">
+	
+	% if($term_data ne ''){
+    <div class="panel panel-warning"">
+        <div class="panel-heading">
+            <h3 class="panel-title" id="bookmark_general"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;<strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Term info for '<%== $term_data->{name} %>'">Term information</strong></h3>
+        </div>
+        <div class="panel-body">
+			<dl>
+			
+				<dt><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Term ID</dt>
+				% if($term_data->{obo} eq 'KEGG' || $term_data->{obo} eq 'MSIGDB' || $term_data->{obo} eq 'DGIdb' || $term_data->{obo} eq 'PANTHER' || $term_data->{obo} eq 'WKPATH' || $term_data->{obo} eq 'CTF' || $term_data->{obo} eq 'TRRUST'){
+				<dd><%== $term_data->{id} %></dd>
+				% }else{
+				<dd class ="my-tooltip" data-toggle="tooltip" data-placement="auto top" title="GOTO the term hierarchy page"><a href="/dcGO/hie/<%== $obo %>/<%== $term_data->{id} %>" target="_blank"><i class="fa fa-sitemap fa-1x"></i>&nbsp;&nbsp;</a><%== $term_data->{id} %></dd>
+				% }
+				
+				
+				<dt><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Term Name</dt>
+				<dd><%== $term_data->{name} %></dd>
+				
+				<dt><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Ontology </dt>
+				<dd><%== $term_data->{obo_info} %></dd>
+				
+			</dl>
+        </div>
+    </div>
+	% }
+	
+	
+	<!-- tables -->
+	% if($rec_anno_scop ne '' || $rec_anno_pfam ne '' || $rec_anno_interpro ne '' || $rec_crosslink ne ''){
+	<div class="panel-group" id="accordion">
+	
+	   % if($rec_anno_scop ne ''){
+	   <!-- panel 1 -->
+	   <div class="panel panel-warning" id="panel1">
+		  <div class="panel-heading">
+			 <h4 class="panel-title" id="bookmark1">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+				   <i class="fa fa-plus-circle"></i>&nbsp;<strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Click me to show/hide this tab that details SCOP domains annotated using the ontology term">SCOP domain annotations</strong></a>
+				</a>
+			 </h4>
+		  </div>
+		  <div id="collapse1" class="panel-collapse collapse">
+			 <div class = "panel-body">
+				<form role="form" id="filter-form">
+					<div class="form-group">
+						<input type="search" class="form-control" placeholder="Please enter a keyword searching for SCOP domains (eg interleukin)" id="mysearch1">
+					</div>
+				</form>
+				
+				<table id="menu1_table" class="compact nowrap" cellpadding="5px" cellspacing="0" width="100%">
+					<thead>
+
+						<tr>
+							<th rowspan="2"></th>
+							<th colspan="3" class="my_style">Annotated domains</th>
+							<th rowspan="2">Annotation<br>score [1-100]</th>
+						</tr>
+					
+						<tr>
+							<th><div>Level</div></th>
+							<th><div>Identifier</div></th>
+							<th><div>Description</div></th>
+						</tr>
+						
+					</thead>
+		
+				</table>
+			 </div>
+		  </div>
+	   </div>
+	   % }
+	   
+	   % if($rec_anno_pfam ne ''){
+	   <!-- panel 2 -->
+	   <div class="panel panel-warning" id="panel2">
+		  <div class="panel-heading">
+			 <h4 class="panel-title" id="bookmark2">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+				   <i class="fa fa-plus-circle"></i>&nbsp;<strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Click me to show/hide this tab that details Pfam domains annotated using the ontology term">Pfam domain annotations</strong></a>
+				</a>
+			 </h4>
+		  </div>
+		  <div id="collapse2" class="panel-collapse collapse">
+			 <div class = "panel-body">
+				<form role="form" id="filter-form">
+					<div class="form-group">
+						<input type="search" class="form-control" placeholder="Please enter a keyword searching for Pfam domains (eg interleukin)" id="mysearch2">
+					</div>
+				</form>
+				
+				<table id="menu2_table" class="compact nowrap" cellpadding="5px" cellspacing="0" width="100%">
+					<thead>
+
+						<tr>
+							<th rowspan="2"></th>
+							<th colspan="3" class="my_style">Annotated domains</th>
+							<th rowspan="2">Annotation<br>score [1-100]</th>
+						</tr>
+					
+						<tr>
+							<th><div>Level</div></th>
+							<th><div>Identifier</div></th>
+							<th><div>Description</div></th>
+						</tr>
+						
+					</thead>
+		
+				</table>
+			 </div>
+		  </div>
+	   </div>
+	   % }
+	   
+	   % if($rec_anno_interpro ne ''){
+	   <!-- panel 3 -->
+	   <div class="panel panel-warning" id="panel3">
+		  <div class="panel-heading">
+			 <h4 class="panel-title" id="bookmark3">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+				   <i class="fa fa-plus-circle"></i>&nbsp;<strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Click me to show/hide this tab that details InterPro domains annotated using the ontology term">InterPro domain annotations</strong></a>
+				</a>
+			 </h4>
+		  </div>
+		  <div id="collapse3" class="panel-collapse collapse">
+			 <div class = "panel-body">
+				<form role="form" id="filter-form">
+					<div class="form-group">
+						<input type="search" class="form-control" placeholder="Please enter a keyword searching for ontology terms (eg complex)" id="mysearch3">
+					</div>
+				</form>
+				
+				<table id="menu3_table" class="compact nowrap" cellpadding="5px" cellspacing="0" width="100%">
+					<thead>
+
+						<tr>
+							<th rowspan="2"></th>
+							<th colspan="3" class="my_style">Annotated domains</th>
+							<th rowspan="2">Annotation<br>score [1-100]</th>
+						</tr>
+					
+						<tr>
+							<th><div>Level</div></th>
+							<th><div>Identifier</div></th>
+							<th><div>Description</div></th>
+						</tr>
+						
+					</thead>
+		
+				</table>
+			 </div>
+		  </div>
+	   </div>
+	   % }
+	   
+	   % if($rec_crosslink ne ''){
+	   <!-- panel 4 -->
+	   <div class="panel panel-warning" id="panel4">
+		  <div class="panel-heading">
+			 <h4 class="panel-title" id="bookmark4">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+				   <i class="fa fa-plus-circle"></i>&nbsp;<strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Click me to show/hide this tab that details crosslinked ontology terms">Ontology terms crosslinking</strong></a>
+				</a>
+			 </h4>
+		  </div>
+		  <div id="collapse4" class="panel-collapse collapse">
+			 <div class = "panel-body">
+				<form role="form" id="filter-form">
+					<div class="form-group">
+						<input type="search" class="form-control" placeholder="Please enter a keyword searching for ontology terms (eg complex)" id="mysearch4">
+					</div>
+				</form>
+				
+				<table id="menu4_table" class="compact nowrap" cellpadding="5px" cellspacing="0" width="100%">
+					<thead>
+
+						<tr>
+							<th rowspan="2"></th>
+							<th colspan="3" class="my_style">Crosslinked terms</th>
+							<th colspan="2" class="my_style">Strength</th>
+						</tr>
+					
+						<tr>
+							<th><div>Ontology</div></th>
+							<th><div>Term ID</div></th>
+							<th><div>Term Name</div></th>
+							<th><div>Z-score</div></th>
+							<th><div>FDR</div></th>
+						</tr>
+						
+					</thead>
+		
+				</table>
+			 </div>
+		  </div>
+	   </div>
+	   % }
+	   
+	</div>
+	% }
+	
+</div>
+

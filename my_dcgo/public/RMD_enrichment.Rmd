@@ -1,0 +1,93 @@
+---
+title: ""
+always_allow_html: yes
+output:
+  rmarkdown::html_document:
+        toc: false
+        toc_depth: 2
+        number_sections: false
+        theme: readable
+        highlight: default
+        toc_float: false
+        code_folding: hide
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(results="asis")
+knitr::opts_chunk$set(cache=FALSE)
+knitr::opts_chunk$set(echo=FALSE)
+knitr::opts_chunk$set(warning=FALSE)
+knitr::opts_chunk$set(message=FALSE)
+knitr::opts_chunk$set(fig_cap="yes")
+```
+
+```{r, eval=FALSE, echo=FALSE}
+cd ~/Sites/XGR/dcGO-site
+################################################
+R
+library(tidyverse)
+## rmarkdown::render + bookdown::html_document2
+rmarkdown::render("now.RMD_enrichment.Rmd", bookdown::html_document2(number_sections=F,theme=c("readable","united")[2], hightlight="default"), output_dir="/Users/hfang/Sites/XGR/dcGO-site/app/examples")
+
+q('no')
+################################################
+```
+
+
+# {.tabset .tabset-fade}
+
+
+## **Input domain information**
+Runtime (`r ls_rmd$runtime`), finished at `r format(Sys.time(), "%a %b %d %X %Y")` (`r Sys.timezone()`).
+
+> **An interactive table** of user-input domains, with 1st column `Identifier` for domain identifiers, 2nd column `Level` for domain level, and 3rd column `Description` for domain description. Domains are hyperlinked to `the domain-specific information page` (see the column `Identifier`).
+
+```{r}
+#input.file <- "~/Sites/XGR/dcGO-site/my_dcgo/public/app/examples/Pfam.txt"
+#data_input <- read_delim(input.file, delim="\t", col_names=F) %>% as_tibble() %>% set_names("Domains")
+
+#data_input <-  ls_rmd$data_input %>% mutate(Identifier=str_c("<a href='http://127.0.0.1:3010/dcGO/", Level, "/", Identifier, "' target='_blank'>&nbsp;", Identifier, "</a>"))
+
+data_input <-  ls_rmd$data_input %>% mutate(Identifier=str_c("<a href='", ls_rmd$host_port, "dcGO/", Level, "/", Identifier, "' target='_blank'>&nbsp;", Identifier, "</a>"))
+
+data_input %>% DT::datatable(options=list(pageLength=5,searchHighlight=T,dom='Bfrtip',buttons=c('csv','copy'), dom='t',scrollX=T), style='default', caption="", rownames=FALSE, escape=F, extensions=c('Buttons'))
+```
+
+
+## **Enriched ontology terms**
+
+> **An interactive table** for enriched ontology terms. Each enriched term (the columns `Ontology`, `Term ID` and `Term Name`) has the enrichment z-score (`Z-score`), the enrichment significant level (`FDR`), the number (`Num`) and list (`Members`) of overlapped member domains. Ontology terms are hyperlinked to `the term-specific information page` (see the column `Term ID`).
+
+```{r}
+#filename <- str_c('~/Sites/XGR/dcGO-site/app/examples/', 'dcGO_enrichment.xlsx')
+filename <- ls_rmd$xlsx_enrichment
+
+message(sprintf("'%s' '%s' (%s) ...", filename, getwd(), as.character(Sys.time())), appendLF=TRUE)
+
+#tb <- openxlsx::read.xlsx(filename) %>% as_tibble() %>% transmute(Ontology=namespace, `Term ID`=str_c("<a href='http://127.0.0.1:3010/dcGO/", namespace, "/", name, "' target='_blank'>&nbsp;", name, "</a>"), `Term Name`=id, `Z-score`=zscore, FDR=signif(adjp,digits=4), Num=nO, Members=overlap) %>% arrange(FDR)
+
+tb <- openxlsx::read.xlsx(filename) %>% as_tibble() %>% transmute(Ontology=namespace, `Term ID`=str_c("<a href='", ls_rmd$host_port, "dcGO/", namespace, "/", name, "' target='_blank'>&nbsp;", name, "</a>"), `Term Name`=id, `Z-score`=zscore, FDR=signif(adjp,digits=4), Num=nO, Members=overlap) %>% arrange(FDR)
+
+tb %>% DT::datatable(options=list(pageLength=1,searchHighlight=T,dom='Bfrtip',buttons=c('csv','copy'), dom='t',scrollX=T), style='default', caption="", rownames=FALSE, escape=F, extensions=c('Buttons'))
+```
+
+
+## **Dotplot of enriched ontology terms**
+
+> **A dotplot** for enriched ontology terms (FDR < 0.05) identified according to Fisher's exact test. Also provided is an editable PDF file for download.
+
+```{r}
+#hlink_pdf <- oAuxEmbed("~/Sites/XGR/dcGO-site/app/examples/dcGO_enrichment_dotplot.pdf", link.text="Download PDF")
+hlink_pdf <- oAuxEmbed(ls_rmd$pdf_dotplot, link.text="Download PDF")
+```
+<div class="text-right">`r hlink_pdf`</div>
+
+
+```{r pathway, fig.cap="Enriched ontology terms, with the top 5 labelled.", fig.width=5, fig.height=4, echo=FALSE, eval=T, fig.align="center",out.width="60%"}
+library(png)
+library(grid)
+#filename <- str_c('~/Sites/XGR/dcGO-site/app/examples/dcGO_enrichment_dotplot.png')
+filename <- ls_rmd$png_dotplot
+img <- readPNG(filename)
+grid.raster(img)
+```
