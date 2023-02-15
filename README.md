@@ -1,4 +1,4 @@
-# [Source codes behind the dcGO](https://github.com/hfang-bristol/dcGO)
+# [Source codes behind the dcGO database in 2023](https://github.com/hfang-bristol/dcGO)
 
 ## @ Overview
 
@@ -8,7 +8,7 @@
 
 > Via a new website, the users can mine the resource in a more integrated and user-friendly way, including: enhanced [faceted search](http://www.protdomainonto.pro:3080/dcGO) returning term- and domain-specific information pages; improved [ontology hierarchy](http://www.protdomainonto.pro:3080/dcGO/hie) browsing ontology terms and annotated domains; and newly added facility supporting domain-based ontology [enrichment analysis](http://www.protdomainonto.pro:3080/dcGO/enrichment).
 
->  A tutorial-like booklet, made available [here](http://www.protdomainonto.pro:3080/dcGObooklet/index.html), describes step-by-step instructions on how to use.
+>  User manual for the dcGO database, made available [here](http://www.protdomainonto.pro:3080/dcGObooklet/index.html), describes step-by-step instructions on how to use.
 
 ## @ Development
 

@@ -146,7 +146,10 @@
 		  	<hr>
 		  	
 		  	<footer class="text-center">
+				<!--
 				2023&nbsp;&nbsp;<a href="javascript:newWin('/dcGObooklet/index.html', 'dcGObooklet', '909', '1169')"><span class="fa fa-book fa-1x"></span>&nbsp;User Manual</a>&nbsp;&nbsp;|&nbsp;&nbsp;<strong>The dcGO database</strong>&nbsp;&nbsp;|&nbsp;&nbsp;Diversifying ontology annotations for protein domains&nbsp;&nbsp;|&nbsp;&nbsp;Developed by Profs. Hai Fang&nbsp;<a href="mailto:fh12355@rjh.com.cn">(<i class="fa fa-envelope-o"></i>)</a> and Julian Gough&nbsp;<a href="mailto:gough@mrc-lmb.cam.ac.uk">(<i class="fa fa-envelope-o"></i>)</a>
+				-->
+				2023&nbsp;&nbsp;<a href="javascript:newWin('/dcGObooklet/index.html', 'dcGObooklet', '909', '1169')"><span class="fa fa-book fa-1x"></span>&nbsp;User Manual</a>&nbsp;&nbsp;|&nbsp;&nbsp;<strong>The dcGO database</strong>&nbsp;&nbsp;|&nbsp;&nbsp;Diversifying ontology annotations for protein domains&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:fh12355@rjh.com.cn"><i class="fa fa-envelope-o"></i>&nbsp;Contact</a>
 		  	</footer>
 		  	
 		<!-- end container theme-showcase -->
