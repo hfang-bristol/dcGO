@@ -1,44 +1,49 @@
-# [Source codes behind the dcGO](https://github.com/23verse/pier)
+# [Source codes behind the dcGO](https://github.com/hfang-bristol/dcGO)
 
 ## @ Overview
 
-> The [PiER](http://www.genetictargets.com/PiER) is web-based facilities that support ab initio and real-time genetic target prioritisation through integrative use of human disease genetics, functional genomics and protein interactions. By design, the PiER features two facilities: `elementary` and `combinatory`.
+> The [dcGO](http://www.protdomainonto.pro/dcGO) database provides systematic mappings from `protein domains` to `ontologies`.
 
-> The `elementary` facility is designed to perform specific tasks, including three online tools: [eV2CG](http://www.genetictargets.com/PiER/eV2CG), utilising functional genomics to link disease-associated variants (particularly at the non-coding genome) to core genes likely responsible for genetic associations; [eCG2PG](http://www.genetictargets.com/PiER/eCG2PG), using knowledge of protein interactions to ‘network’ core genes and additional peripheral genes, producing a ranked list of core and peripheral genes; and [eCrosstalk](http://www.genetictargets.com/PiER/eCrosstalk), exploiting the information of pathway-derived interactions to identify highly-ranked genes mediating the crosstalk between molecular pathways. Each of elementary tasks giving results is sequentially piped to the next one. 
+> The dcGO update in 2023 extends annotations for protein domains of different definitions/levels (SCOP, Pfam, and InterPro) using commonly used ontologies (categorised into functions, phenotypes, diseases, drugs, pathways, regulators, and hallmarks), adding new dimensions to the utility of both ontology and protein domain resources.
 
-> By chaining together elementary tasks, the `combinatory` facility automates genetics-led and network-based integrative prioritisation for genetic targets at the gene level ([cTGene](http://www.genetictargets.com/PiER/cTGene)) and at the crosstalk level ([cTCrosstalk](http://www.genetictargets.com/PiER/cTCrosstalk)). 
+> Via a new website, the users can mine the resource in a more integrated and user-friendly way, including: enhanced [faceted search](http://www.protdomainonto.pro:3080/dcGO) returning term- and domain-specific information pages; improved [ontology hierarchy](http://www.protdomainonto.pro:3080/dcGO/hie) browsing ontology terms and annotated domains; and newly added facility supporting domain-based ontology [enrichment analysis](http://www.protdomainonto.pro:3080/dcGO/enrichment).
 
->  A tutorial-like booklet, made available [here](http://www.genetictargets.com/PiER/booklet), describes step-by-step instructions on how to use.
+>  A tutorial-like booklet, made available [here](http://www.protdomainonto.pro:3080/dcGObooklet/index.html), describes step-by-step instructions on how to use.
 
 ## @ Development
 
-> The PiER was developed using a next-generation Perl web framework [Mojolicious](https://www.mojolicious.org).
+> The dcGO website was developed using a Perl real-time web framework [Mojolicious](https://www.mojolicious.org).
 
-> The PiER was also built using [Bootstrap](https://getbootstrap.com), supporting the mobile-first and responsive webserver in all major platform browsers.
+> The dcGO website was also developed using [Bootstrap](https://getbootstrap.com), supporting the mobile-first and responsive webserver in all major platform browsers.
 
-> The directory `pier_app` has the following tree-like directory structure (3 levels):
+> The directory `my_dcgo` has the following tree-like directory structure (3 levels):
 ```ruby
-pier_app
+my_dcgo
 ├── lib
-│   └── PIER_app
+│   └── My_dcgo
 │       └── Controller
 ├── public
-│   ├── PiERbooklet
-│   │   ├── index_files
-│   │   └── libs
 │   ├── app
 │   │   ├── ajex
 │   │   ├── css
 │   │   ├── examples
-│   │   └── img
+│   │   ├── img
+│   │   └── js
+│   ├── dcGObooklet
+│   │   ├── index_files
+│   │   └── libs
 │   └── dep
+│       ├── HighCharts
 │       ├── Select2
 │       ├── bootstrap
 │       ├── bootstrapselect
 │       ├── bootstraptoggle
 │       ├── dataTables
 │       ├── fontawesome
+│       ├── jcloud
+│       ├── jqcloud
 │       ├── jquery
+│       ├── tabber
 │       └── typeahead
 ├── script
 ├── t
@@ -69,26 +74,21 @@ perl -MCPAN -e "install local::lib"
 perl -MCPAN -Mlocal::lib -e "install JSON::Parse"
 ```
 
-### 2. Install R and packages
+### 2. Install R
 
 ```ruby
 sudo su
 # here enter your password
 
 # install R
-wget http://www.stats.bris.ac.uk/R/src/base/R-4/R-4.1.3.tar.gz
-tar xvfz R-4.1.3.tar.gz
-cd ~/R-4.1.3
+wget http://www.stats.bris.ac.uk/R/src/base/R-4/R-4.2.0.tar.gz
+tar xvfz R-4.2.0.tar.gz
+cd ~/R-4.2.0
 ./configure
 make
 make check
 make install
 R # start R
-
-# install R packages
-install.packages("BiocManager")
-BiocManager::install()
-BiocManager::install(c("Pi","rmarkdow","bookdown"), dependencies=T)
 ```
 
 ### 3. Install pandoc
@@ -98,8 +98,8 @@ sudo su
 # here enter your password
 
 # install pandoc
-wget https://github.com/jgm/pandoc/releases/download/2.17.1.1/pandoc-2.17.1.1-linux-amd64.tar.gz
-tar xvzf pandoc-2.17.1.1-linux-amd64.tar.gz --strip-components 1 -C /usr/local/
+wget https://github.com/jgm/pandoc/releases/download/2.18/pandoc-2.18-linux-amd64.tar.gz
+tar xvzf pandoc-2.18-linux-amd64.tar.gz --strip-components 1 -C /usr/local/
 
 # use pandoc to render R markdown
 R
@@ -111,15 +111,16 @@ rmarkdown::render(YOUR_RMD_FILE, bookdown::html_document2(number_sections=F, the
 
 ## @ Deployment
 
-Assume you place `pier_app` under your `home` directory
+Assume you place `my_dcgo` under your `home` directory
 
 ```ruby
-cd ~/pier_app
-morbo -l 'http://*:80/' script/pier_app
+cd ~/my_dcgo
+systemctl restart apache2.service
+morbo -l 'http://*:3080/' script/my_dcgo
 ```
 
 ## @ Contact
 
-> Please drop [email](mailto:fh12355@rjh.com.cn) for bug reports or enquiries.
+> For any bug reports, please drop [email](mailto:fh12355@rjh.com.cn).
 
 
