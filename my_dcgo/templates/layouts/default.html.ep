@@ -10,7 +10,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="dcGO - Webserver">
-		<meta name="description1" content="domain-centric Genoe Ontology">
+		<meta name="description1" content="domain-centric Ontologies">
 		<meta name="author" content="Hai Fang">
 		<link rel="icon" href="/app/img/dcGO.icon.png">
 
@@ -84,7 +84,7 @@
 				<span class="icon-bar"></span>
 			  </button>
 			  
-			  <a class="navbar-brand" class="btn btn-link btn-md active" role="button" href="/dcGO" title="WELCOME TO dcGO"> <i class="fa fa-home fa-lg" aria-hidden="true"></i>&nbsp;dcGO</a>
+			  <a class="navbar-brand" class="btn btn-link btn-md active" role="button" href="/dcGO" title="WELCOME TO dcGO"> <i class="fa fa-home fa-lg" aria-hidden="true"></i>&nbsp;HOME</a>
 			  
 		   </div>
 			
@@ -92,7 +92,7 @@
 			  <ul class="nav navbar-nav navbar-right">
 				
 				<li class="dropdown<%== ($tab=~/pidb/i)? ' active':'' %>">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-bars fa-lg"></span> <b class="caret"></b></a>
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa fa-bars fa-lg"></span>&nbsp;&nbsp;MENU&nbsp;<b class="caret"></b></a>
 				  <ul class="dropdown-menu">
 						
 						<li <%== ($tab=~/dcGO\/hie/i)? 'class="active"':'' %>>
@@ -149,7 +149,7 @@
 				<!--
 				2023&nbsp;&nbsp;<a href="javascript:newWin('/dcGObooklet/index.html', 'dcGObooklet', '909', '1169')"><span class="fa fa-book fa-1x"></span>&nbsp;User Manual</a>&nbsp;&nbsp;|&nbsp;&nbsp;<strong>The dcGO database</strong>&nbsp;&nbsp;|&nbsp;&nbsp;Diversifying ontology annotations for protein domains&nbsp;&nbsp;|&nbsp;&nbsp;Developed by Profs. Hai Fang&nbsp;<a href="mailto:fh12355@rjh.com.cn">(<i class="fa fa-envelope-o"></i>)</a> and Julian Gough&nbsp;<a href="mailto:gough@mrc-lmb.cam.ac.uk">(<i class="fa fa-envelope-o"></i>)</a>
 				-->
-				2023&nbsp;&nbsp;<a href="javascript:newWin('/dcGObooklet/index.html', 'dcGObooklet', '909', '1169')"><span class="fa fa-book fa-1x"></span>&nbsp;User Manual</a>&nbsp;&nbsp;|&nbsp;&nbsp;<strong>The dcGO database</strong>&nbsp;&nbsp;|&nbsp;&nbsp;Diversifying ontology annotations for protein domains&nbsp;&nbsp;|&nbsp;&nbsp;<a href="mailto:fh12355@rjh.com.cn"><i class="fa fa-envelope-o"></i>&nbsp;Contact</a>
+				2023&nbsp;&nbsp;<a href="javascript:newWin('/dcGObooklet/index.html', 'dcGObooklet', '909', '1169')"><span class="fa fa-book fa-1x"></span>&nbsp;User Manual</a>&nbsp;&nbsp;|&nbsp;&nbsp;<strong>The dcGO domain-centric ontology database</strong>&nbsp;&nbsp;|&nbsp;&nbsp;Systematic mappings from protein domains to ontologies&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://pubmed.ncbi.nlm.nih.gov/37061086/" target="37061086"><i class="fa fa-quote-left"></i>&nbsp;Cite&nbsp;<i class="fa fa-quote-right"></i></a>
 		  	</footer>
 		  	
 		<!-- end container theme-showcase -->
@@ -225,6 +225,20 @@
 				window.open(url,name,'scrollbars=yes,resizable=yes,fullscreen=yes, width=' + width + ', height='+height+', top='+top+', left='+left);
 			}
 			
+			// clear the field for textarea
+			// By default, the text box is pre-filled with the provided example (by default) when the interface page is first-visited or refreshed.
+			// When the focus is set to the text box for the first time
+			// When the user clicks on any text area within the box for the first time, the filled example disappears, and the text box is ready to receive user-input contents.
+			function clearFieldFirstTime(element) {
+  				if(element.counter==undefined) {
+					element.counter = 1;
+  				}else {
+					element.counter++;
+  				}
+  				if(element.counter == 1) {
+					element.value = '';
+  				}
+			}
 						
 			// Advanced button
 			$('#advanced-toggle').on('shown.bs.collapse', function () {
@@ -268,6 +282,13 @@
 			});
 			$('#panel5').on('hidden.bs.collapse', function () {
 			   $("#panel5 #bookmark5 .fa").removeClass("fa-minus-circle").addClass("fa-plus-circle");
+			});
+			// Resulting panel6 button
+			$('#panel6').on('shown.bs.collapse', function () {
+			   $("#panel6 #bookmark6 .fa").removeClass("fa-plus-circle").addClass("fa-minus-circle");
+			});
+			$('#panel6').on('hidden.bs.collapse', function () {
+			   $("#panel6 #bookmark6 .fa").removeClass("fa-minus-circle").addClass("fa-plus-circle");
 			});
 			
 		</script>

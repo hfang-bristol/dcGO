@@ -69,7 +69,6 @@
 		  </div>
 	   </div>
 
-	
 	   <!-- panel 2 -->
 	   <div class="panel panel-warning" id="panel2">
 		  <div class="panel-heading">
@@ -378,86 +377,74 @@ mysql> <span class="burgundy_text">SHOW</span> tables;
     </pre>
 	
 	<hr>
-    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Extract SCOP superfamily domains annotated by the Gene Ontology Biological Process (GOBP) term 'GO:0002376' ('immune system process')</span>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Extract Pfam domains annotated by Experimental Factor Ontology (EFO) term 'EFO:0000540' ('immune system disease')</span>
     <pre class="citation_title">
 mysql> <span class="burgundy_text">SELECT</span> b.id, b.description 
-<span class="burgundy_text">FROM</span> mapping_scop AS a, scop_info AS b 
-<span class="burgundy_text">WHERE</span> a.domain_id=b.id AND b.level='sf' AND a.obo='GOBP' AND a.term_id='GO:0002376'
+<span class="burgundy_text">FROM</span> mapping_pfam AS a, pfam_info AS b 
+<span class="burgundy_text">WHERE</span> a.domain_id=b.id AND a.obo='EFO' AND a.term_id='EFO:0000540'
 <span class="burgundy_text">ORDER BY</span> b.description ASC;
-+-------+--------------------------------------------------------------------------+
-| id    | description                                                              |
-+-------+--------------------------------------------------------------------------+
-| 47266 | 4-helical cytokines                                                      |
-| 57845 | B-box zinc-binding domain                                                |
-| 55394 | Bactericidal permeability-increasing protein, BPI                        |
-| 56436 | C-type lectin-like                                                       |
-| 49562 | C2 domain (Calcium/lipid-binding domain, CaLB)                           |
-| 52129 | Caspase-like                                                             |
-| 57535 | Complement control module/SCR domain                                     |
-| 49899 | Concanavalin A-like lectins/glucanases                                   |
-| 54403 | Cystatin/monellin                                                        |
-| 54001 | Cysteine proteinases                                                     |
-| 57501 | Cystine-knot cytokines                                                   |
-| 50353 | Cytokine                                                                 |
-| 47986 | DEATH domain                                                             |
-| 57392 | Defensin-like                                                            |
-| 57196 | EGF/Laminin                                                              |
-| 57256 | Elafin-like                                                              |
-| 81321 | Family A G protein-coupled receptor-like                                 |
-| 56496 | Fibrinogen C-terminal domain-like                                        |
-| 49265 | Fibronectin type III                                                     |
-| 47095 | HMG-box                                                                  |
-| 48726 | Immunoglobulin                                                           |
-| 69318 | Integrin alpha N-terminal domain                                         |
-| 69179 | Integrin domains                                                         |
-| 48340 | Interferon-induced guanylate-binding protein 1 (GBP1), C-terminal domain |
-| 54117 | Interleukin 8-like chemokines                                            |
-| 52058 | L domain-like                                                            |
-| 57424 | LDL receptor-like module                                                 |
-| 57959 | Leucine zipper domain                                                    |
-| 54452 | MHC antigen-recognition domain                                           |
-| 52540 | P-loop containing nucleoside triphosphate hydrolases                     |
-| 49417 | p53-like transcription factors                                           |
-| 50729 | PH domain-like                                                           |
-| 56112 | Protein kinase-like (PK-like)                                            |
-| 57850 | RING/U-box                                                               |
-| 54928 | RNA-binding domain, RBD                                                  |
-| 54076 | RNase A-like                                                             |
-| 52047 | RNI-like                                                                 |
-| 55550 | SH2 domain                                                               |
-| 50044 | SH3-domain                                                               |
-| 49879 | SMAD/FHA domain                                                          |
-| 57586 | TNF receptor-like                                                        |
-| 49842 | TNF-like                                                                 |
-| 52200 | Toll/Interleukin receptor TIR domain                                     |
-| 50494 | Trypsin-like serine proteases                                            |
-| 82895 | TSP-1 type 1 repeat                                                      |
-+-------+--------------------------------------------------------------------------+
++---------+-----------------------------------------------------------+
+| id      | description                                               |
++---------+-----------------------------------------------------------+
+| PF00001 | 7 transmembrane receptor (rhodopsin family)               |
+| PF00023 | Ankyrin repeat                                            |
+| PF07716 | Basic region leucine zipper                               |
+| PF00170 | bZIP transcription factor                                 |
+| PF00656 | Caspase domain                                            |
+| PF00619 | Caspase recruitment domain                                |
+| PF00129 | Class I Histocompatibility antigen, domains alpha 1 and 2 |
+| PF00993 | Class II histocompatibility antigen, alpha domain         |
+| PF00969 | Class II histocompatibility antigen, beta domain          |
+| PF00173 | Cytochrome b5-like Heme/Steroid binding domain            |
+| PF00008 | EGF-like domain                                           |
+| PF00178 | Ets-domain                                                |
+| PF07654 | Immunoglobulin C1-set domain                              |
+| PF07686 | Immunoglobulin V-set domain                               |
+| PF03770 | Inositol polyphosphate kinase                             |
+| PF00605 | Interferon regulatory factor transcription factor         |
+| PF09294 | Interferon-alpha/beta receptor, fibronectin type III      |
+| PF10401 | Interferon-regulatory factor 3                            |
+| PF00169 | PH domain                                                 |
+| PF00130 | Phorbol esters/diacylglycerol binding domain (C1 domain)  |
+| PF07714 | Protein tyrosine and serine/threonine kinase              |
+| PF01023 | S-100/ICaBP type calcium binding domain                   |
+| PF00017 | SH2 domain                                                |
+| PF00018 | SH3 domain                                                |
+| PF00048 | Small cytokines (intecrine/chemokine), interleukin-8 like |
+| PF01017 | STAT protein, all-alpha domain                            |
+| PF02864 | STAT protein, DNA binding domain                          |
+| PF02865 | STAT protein, protein interaction domain                  |
+| PF02198 | Sterile alpha motif (SAM)/Pointed domain                  |
+| PF01582 | TIR domain                                                |
+| PF01108 | Tissue factor                                             |
+| PF00229 | TNF(Tumour Necrosis Factor) family                        |
+| PF00020 | TNFR/NGFR cysteine-rich region                            |
++---------+-----------------------------------------------------------+
     </pre>
     </div>
     
     <div class="tabbertab">
     <h2><a>VERSIONS</a></h2>
     <br>
-    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Released on JANUARY 2023</span>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;January 2023 release</span>
     &nbsp;&nbsp;
 	<a class="btn btn-warning btn-sm active" role="button" href="/app/img/dcGOdb_202301.sql.gz" download="dcGOdb_202301.sql.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> dcGOdb_202301.sql.gz</a>
 	
 	<hr>
     
-    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Released on JULY 2022</span>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;July 2022 release</span>
     &nbsp;&nbsp;
 	<a class="btn btn-warning btn-sm active" role="button" href="/app/img/dcGOdb_202207.sql.gz" download="dcGOdb_202207.sql.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> dcGOdb_202207.sql.gz</a>
 	
 	<hr>
     
-    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Released on SEPTEMBER 2021</span>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;September 2021 release</span>
     &nbsp;&nbsp;
     <a class="btn btn-warning btn-sm active" role="button" href="/app/img/dcGOdb_202109.sql.gz" download="dcGOdb_202109.sql.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> dcGOdb_202109.sql.gz</a>
 	
 	<hr>
     
-    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;Released on APRIL 2021</span>
+    <span class="sandy_text"><i class="fa fa-minus fa-1x"></i>&nbsp;&nbsp;April 2021 release</span>
     &nbsp;&nbsp;
     <a class="btn btn-warning btn-sm active" role="button" href="/app/img/dcGOdb_202104.sql.gz" download="dcGOdb_202104.sql.gz"><i class="fa fa-cloud-download fa-lg" aria-hidden="true"></i> dcGOdb_202104.sql.gz</a>
     
@@ -467,6 +454,58 @@ mysql> <span class="burgundy_text">SELECT</span> b.id, b.description
 				
 				
 			 </div>
+		  </div>
+	   </div>
+	   
+	   <!-- panel 6 -->
+	   <div class="panel panel-warning" id="panel6">
+		  <div class="panel-heading">
+			 <h4 class="panel-title" id="bookmark6">
+				<a id="barplot-button" data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+				   <i class="fa fa-plus-circle"></i><strong class ="my-tooltip" data-toggle="tooltip" data-placement="auto right" title="Contact infomation">&nbsp;&nbsp;CONTACT</strong></a>
+			 </h4>
+		  </div>
+		  <div id="collapse6" class="panel-collapse collapse">
+
+		  	<br>
+		  	
+		  	<ul>
+		  	
+	<!-- Content Row -->
+    <div class="row">
+    
+        <!-- Contact Details Column -->
+        <div class="col-md-4">
+        	<p><strong>Hai FANG</strong>, PhD</p>
+            <p><i class="fa fa-minus"></i>&nbsp;&nbsp;Professor of Bioinformatics</p>
+            <p><i class="fa fa-minus"></i>&nbsp;&nbsp;<a href="mailto:fh12355@rjh.com.cn">fh12355@rjh.com.cn</a></p>
+            <p><i class="fa fa-minus"></i>&nbsp;&nbsp;<a href="https://scholar.google.com/citations?hl=en&user=4-78doUAAAAJ&view_op=list_works&authuser=1" target="scholar">Google Scholar</a></p>
+            <p><i class="fa fa-minus"></i>&nbsp;&nbsp;Shanghai Institute of Hematology, State Key Laboratory of Medical Genomics, National Research Center for Translational Medicine at Shanghai, Ruijin Hospital, Shanghai Jiao Tong University School of Medicine, Shanghai 200025, China</p>
+            <br>
+        </div>
+        
+    	<!-- Map Column -->
+        <div class="col-md-8">
+        	<!-- Embedded Google Map -->
+<table cellspacing='0' cellpadding='0' width=100%>
+<tr>
+<td align=center><IMG src="/app/img/dcGO.contact.png" class="img_responsive">
+</td>
+</tr>
+<tr>
+<td align=center>
+<P class="text_center">
+<I><B></B></I></P>
+</td>
+</tr>
+</table>
+        </div>
+
+    </div>
+    <!-- /.row -->
+			
+			</ul>
+			
 		  </div>
 	   </div>
 	   
@@ -492,12 +531,10 @@ mysql> <span class="burgundy_text">SELECT</span> b.id, b.description
 				<p>2020 - 2022</p>
 			</fieldset>
 			
-			<!--
 			<fieldset>
 				<h5 class="citation_title"><strong>BBSRC Tools and Resources Development Fund:</strong> BB/L018543/1</h5>
 				<p>2014 - 2015</p>
 			</fieldset>
-			-->
 			
 			<br>
 			</ul>
@@ -517,17 +554,24 @@ mysql> <span class="burgundy_text">SELECT</span> b.id, b.description
 			<ul>
 	
 			<fieldset>
+			<h5 class="citation_title">SUPERFAMILY 1.75 including a domain-centric gene ontology method</h5>
+			<p><em>Nucleic Acids Research</em> 2011</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gkq1130" target="10.1093/nar/gkq1130">10.1093/nar/gkq1130</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gkq1130" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+	
+			<fieldset>
 			<h5 class="citation_title">dcGO: database of domain-centric ontologies on functions, phenotypes, diseases and more</h5>
 			<p><em>Nucleic Acids Research</em> 2013</p>
 			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gkq1130" target="10.1093/nar/gks1080">10.1093/nar/gks1080</a>
 			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gks1080" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
 			</fieldset>
-	
+			
 			<fieldset>
-			<h5 class="citation_title">SUPERFAMILY 1.75 including a domain-centric gene ontology method</h5>
-			<p><em>Nucleic Acids Research</em> 2011</p>
-			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gkq1130" target="10.1093/nar/gkq1130">10.1093/nar/gkq1130</a>
-			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gkq1130" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			<h5 class="citation_title">A domain-centric solution to functional genomics via dcGO Predictor</h5>
+			<p><em>BMC Bioinformatics</em> 2013</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/1471-2105-14-S3-S9" target="10.1186/1471-2105-14-S3-S9">10.1186/1471-2105-14-S3-S9</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1186/1471-2105-14-S3-S9" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
 			</fieldset>
 			
 			<fieldset>
@@ -535,6 +579,20 @@ mysql> <span class="burgundy_text">SELECT</span> b.id, b.description
 			<p><em>Nature Methods</em> 2013</p>
 			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/nmeth.2340" target="10.1038/nmeth.2340">10.1038/nmeth.2340</a>
 			<span class="__dimensions_badge_embed__" data-doi="10.1038/nmeth.2340" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">dcGOR: An R Package for Analysing Ontologies and Protein Domain Annotations</h5>
+			<p><em>PLoS Computational Biology</em> 2014</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1371/journal.pcbi.1003929" target="10.1371/journal.pcbi.1003929">10.1371/journal.pcbi.1003929</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1371/journal.pcbi.1003929" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The SUPERFAMILY 1.75 database in 2014: a doubling of data</h5>
+			<p><em>Nucleic Acids Research</em> 2015</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gku1041" target="10.1093/nar/gku1041">10.1093/nar/gku1041</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gku1041" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
 			</fieldset>
 			
 			<fieldset>
@@ -549,6 +607,13 @@ mysql> <span class="burgundy_text">SELECT</span> b.id, b.description
 			<p><em>Genome biology</em> 2019</p>
 			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/s13059-019-1835-8" target="10.1186/s13059-019-1835-8">10.1186/s13059-019-1835-8</a>
 			<span class="__dimensions_badge_embed__" data-doi="10.1186/s13059-019-1835-8" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
+			</fieldset>
+			
+			<fieldset>
+			<h5 class="citation_title">The dcGO domain-centric ontology database in 2023: new website and extended annotations for protein structural domains</h5>
+			<p><em>Journal of Molecular Biology</em> 2023</p>
+			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1016/j.jmb.2023.168093" target="10.1016/j.jmb.2023.168093">10.1016/j.jmb.2023.168093</a>
+			<span class="__dimensions_badge_embed__" data-doi="10.1016/j.jmb.2023.168093" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
 			</fieldset>
 			
 			<br>
@@ -905,13 +970,6 @@ mysql> <span class="burgundy_text">SELECT</span> b.id, b.description
 			</fieldset>
 			
 			<fieldset>
-			<h5 class="citation_title">The SUPERFAMILY 1.75 database in 2014: a doubling of data</h5>
-			<p><em>Nucleic Acids Research</em> 2015</p>
-			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1093/nar/gku1041" target="10.1093/nar/gku1041">10.1093/nar/gku1041</a>
-			<span class="__dimensions_badge_embed__" data-doi="10.1093/nar/gku1041" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
-			</fieldset>
-			
-			<fieldset>
 			<h5 class="citation_title">The Disease Ontology: fostering interoperability between biological and clinical human disease-related data</h5>
 			<p><em>Mammalian Genome</em> 2015</p>
 			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1007/s00335-015-9576-9" target="10.1007/s00335-015-9576-9">10.1007/s00335-015-9576-9</a>
@@ -968,13 +1026,6 @@ mysql> <span class="burgundy_text">SELECT</span> b.id, b.description
 			</fieldset>
 			
 			<fieldset>
-			<h5 class="citation_title">dcGOR: An R Package for Analysing Ontologies and Protein Domain Annotations</h5>
-			<p><em>PLoS Computational Biology</em> 2014</p>
-			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1371/journal.pcbi.1003929" target="10.1371/journal.pcbi.1003929">10.1371/journal.pcbi.1003929</a>
-			<span class="__dimensions_badge_embed__" data-doi="10.1371/journal.pcbi.1003929" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
-			</fieldset>
-			
-			<fieldset>
 			<h5 class="citation_title">A large-scale evaluation of computational protein function prediction</h5>
 			<p><em>Nature Methods</em> 2013</p>
 			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/nmeth.2340" target="10.1038/nmeth.2340">10.1038/nmeth.2340</a>
@@ -986,13 +1037,6 @@ mysql> <span class="burgundy_text">SELECT</span> b.id, b.description
 			<p><em>Scientific Reports</em> 2013</p>
 			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1038/srep02015" target="10.1038/srep02015">10.1038/srep02015</a>
 			<span class="__dimensions_badge_embed__" data-doi="10.1038/srep02015" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
-			</fieldset>
-			
-			<fieldset>
-			<h5 class="citation_title">A domain-centric solution to functional genomics via dcGO Predictor</h5>
-			<p><em>BMC Bioinformatics</em> 2013</p>
-			<strong>DOI:</strong> <a href="http://dx.doi.org/10.1186/1471-2105-14-S3-S9" target="10.1186/1471-2105-14-S3-S9">10.1186/1471-2105-14-S3-S9</a>
-			<span class="__dimensions_badge_embed__" data-doi="10.1186/1471-2105-14-S3-S9" data-style="small_rectangle" data-legend="hover-right" data-hide-zero-citations="true"></span>
 			</fieldset>
 			
 			<fieldset>

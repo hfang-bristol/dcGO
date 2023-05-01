@@ -1,22 +1,22 @@
-# [Source codes behind the dcGO database in 2023](https://github.com/hfang-bristol/dcGO)
+# [Source codes for the dcGO database in 2023](https://github.com/hfang-bristol/dcGO)
 
 ## @ Overview
 
-> The [dcGO](http://www.protdomainonto.pro/dcGO) database provides systematic mappings from `protein domains` to `ontologies`.
+> The [dcGO](http://www.protdomainonto.pro/dcGO) database offers a comprehensive mapping of `protein domains` to `ontologies`.
 
-> The dcGO update in 2023 extends annotations for protein domains of different definitions/levels (SCOP, Pfam, and InterPro) using commonly used ontologies (categorised into functions, phenotypes, diseases, drugs, pathways, regulators, and hallmarks), adding new dimensions to the utility of both ontology and protein domain resources.
+> The dcGO update in 2023 extends annotations for protein domains from different definitions/levels (SCOP, Pfam, and InterPro) using commonly-used ontologies (categorised into functions, phenotypes, diseases, drugs, pathways, regulators, and hallmarks). This update adds new dimensions to the utility of both ontology and protein domain resources.
 
-> Via a new website, the users can mine the resource in a more integrated and user-friendly way, including: enhanced [faceted search](http://www.protdomainonto.pro:3080/dcGO) returning term- and domain-specific information pages; improved [ontology hierarchy](http://www.protdomainonto.pro:3080/dcGO/hie) browsing ontology terms and annotated domains; and newly added facility supporting domain-based ontology [enrichment analysis](http://www.protdomainonto.pro:3080/dcGO/enrichment).
+> A new website has been launched to provide users with a more integrated and user-friendly experience. This website features: enhanced [faceted search](http://www.protdomainonto.pro:3080/dcGO) capabilities that return term- and domain-specific information pages; improved [ontology hierarchy](http://www.protdomainonto.pro:3080/dcGO/hie) capabilities that browse both ontology terms and their annotated domains; and a newly added facility that  supports [domain-based ontology enrichment analysis](http://www.protdomainonto.pro:3080/dcGO/enrichment).
 
->  User manual for the dcGO database, made available [here](http://www.protdomainonto.pro:3080/dcGObooklet/index.html), describes step-by-step instructions on how to use.
+> To learn how to use the dcGO database, a user manual has been made available [here](http://www.protdomainonto.pro:3080/dcGObooklet/index.html) with step-by-step instructions.
 
 ## @ Development
 
 > The dcGO website was developed using a Perl real-time web framework [Mojolicious](https://www.mojolicious.org).
 
-> The dcGO website was also developed using [Bootstrap](https://getbootstrap.com), supporting the mobile-first and responsive webserver in all major platform browsers.
+> The dcGO website was also developed using [Bootstrap](https://getbootstrap.com) that supports a mobile-first and responsive webserver across all major platform browsers.
 
-> The directory `my_dcgo` has the following tree-like directory structure (3 levels):
+> The folder `my_dcgo` has a tree-like directory structure with three levels:
 ```ruby
 my_dcgo
 ├── lib
